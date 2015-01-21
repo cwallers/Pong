@@ -1,0 +1,10 @@
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Content\basketball.xnb
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojResolveAssemblyReference.cache
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Content\hand.xnb
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Content\swish.xnb
+c:\users\cwallers\documents\visual studio 2010\Projects\Pong\Pong\Pong\bin\x86\Debug\Content\crash.xnb
