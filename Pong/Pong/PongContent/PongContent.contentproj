@@ -42,28 +42,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="basketball.png">
+    <Compile Include="Images\basketball.png">
       <Name>basketball</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hand.png">
+    <Compile Include="Images\hand.png">
       <Name>hand</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="swish.wav">
+    <Compile Include="Audio\swish.wav">
       <Name>swish</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="crash.wav">
+    <Compile Include="Audio\crash.wav">
       <Name>crash</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
