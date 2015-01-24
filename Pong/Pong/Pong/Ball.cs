@@ -25,10 +25,6 @@ namespace Pong
         private const float DEFAULT_X_SPEED = 150;
         private const float DEFAULT_Y_SPEED = 150;
 
-        // Initial location of the ball
-        private const float INIT_X_POS = 80;
-        private const float INIT_Y_POS = 0;
-
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
 
@@ -122,16 +118,8 @@ namespace Pong
             ballSpeed.X = DEFAULT_X_SPEED;
             ballSpeed.Y = DEFAULT_Y_SPEED;
 
-            ballPosition.Y = 0;
-
-            // Make sure ball is not positioned off the screen
-            if (ballPosition.X < 0)
-                ballPosition.X = 0;
-            else if (ballPosition.X + ballSprite.Width > GraphicsDevice.Viewport.Width)
-            {
-                ballPosition.X = GraphicsDevice.Viewport.Width - ballSprite.Width;
-                ballSpeed.Y *= -1;
-            }
+            ballPosition.Y = (GraphicsDevice.Viewport.Height - Height)/2;
+            ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
         }
 
         /// <summary>
@@ -172,8 +160,8 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
-            ballPosition.X = INIT_X_POS;
-            ballPosition.Y = INIT_Y_POS;
+            ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
+            ballPosition.Y = (GraphicsDevice.Viewport.Height - Height) / 2;
 
             base.Initialize();
         }

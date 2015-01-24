@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
-      <Time>2015-01-23T22:00:06.957382-06:00</Time>
+      <Time>2015-01-24T15:57:45.6270543-06:00</Time>
     </Item>
     <Item>
       <Source>Images\hand.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
-      <Time>2015-01-23T22:00:06.9633865-06:00</Time>
+      <Time>2015-01-24T15:57:45.6270543-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\swish.wav</Source>
@@ -26,7 +26,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-01-23T22:00:06.9673901-06:00</Time>
+      <Time>2015-01-24T15:57:45.626054-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\crash.wav</Source>
@@ -35,7 +35,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-01-23T22:00:06.9623858-06:00</Time>
+      <Time>2015-01-24T15:57:45.6250538-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

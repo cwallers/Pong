@@ -18,16 +18,16 @@ namespace Pong
     public class Paddle : Microsoft.Xna.Framework.DrawableGameComponent
     {
         #region Private Members
-        private SpriteBatch spriteBatch;
-        private ContentManager contentManager;
+        protected SpriteBatch spriteBatch;
+        protected ContentManager contentManager;
 
         // Paddle sprite
-        private Texture2D paddleSprite;
+        protected Texture2D paddleSprite;
 
         // Paddle location
-        private Vector2 paddlePosition;
+        protected Vector2 paddlePosition;
 
-        private const float DEFAULT_X_SPEED = 250;
+        protected const float DEFAULT_X_SPEED = 250;
 
         #endregion
 
@@ -90,21 +90,6 @@ namespace Pong
         }
 
         /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            // Make sure base.Initialize() is called before this or handSprite will be null
-            X = (GraphicsDevice.Viewport.Width - Width) / 2;
-            Y = GraphicsDevice.Viewport.Height - Height;
-
-            Speed = DEFAULT_X_SPEED;
-        }
-
-        /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
@@ -112,6 +97,31 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Draw(GameTime gameTime)
+        {           
+            spriteBatch.Begin();
+            spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
+    }
+
+    public class PaddleHuman : Paddle 
+    {
+        public PaddleHuman(Game game) : base(game) {}
+        
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
         }
 
@@ -127,30 +137,59 @@ namespace Pong
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
-                + moveDistance <= GraphicsDevice.Viewport.Width)
+            if (newKeyState.IsKeyDown(Keys.Down) && Y + paddleSprite.Height
+                + moveDistance <= GraphicsDevice.Viewport.Height)
             {
-                X += moveDistance;
+                Y += moveDistance;
             }
-            else if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0)
+            else if (newKeyState.IsKeyDown(Keys.Up) && Y - moveDistance >= 0)
             {
-                X -= moveDistance;
+                Y -= moveDistance;
             }
-            
+
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// This is called when the game should draw itself.
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Draw(GameTime gameTime)
-        {           
-            spriteBatch.Begin();
-            spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
-            spriteBatch.End();
+        public override void Initialize()
+        {
+            base.Initialize();
 
-            base.Draw(gameTime);
+            // Make sure base.Initialize() is called before this or handSprite will be null
+            X = 2;
+            Y = (GraphicsDevice.Viewport.Height - Height)/2;
+
+            Speed = DEFAULT_X_SPEED;
+        }
+    }
+
+    public class PaddleComputer : Paddle 
+    {
+        public PaddleComputer(Game game) : base(game) {}
+        
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand"); //TODO: change the image to a cyber hand
+        }
+
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            // Make sure base.Initialize() is called before this or handSprite will be null
+            X = GraphicsDevice.Viewport.Width - Width -  2;
+            Y = (GraphicsDevice.Viewport.Height - Height) / 2;
+
+            Speed = DEFAULT_X_SPEED;
         }
     }
 }
