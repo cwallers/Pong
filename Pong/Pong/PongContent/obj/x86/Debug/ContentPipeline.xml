@@ -37,6 +37,15 @@
       <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
       <Time>2015-01-24T15:57:45.6250538-06:00</Time>
     </Item>
+    <Item>
+      <Source>Images\AIPlayer.png</Source>
+      <Name>Images\AIPlayer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb</Output>
+      <Time>2015-01-24T22:16:49.3413805-06:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

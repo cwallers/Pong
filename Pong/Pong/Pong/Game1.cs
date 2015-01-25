@@ -81,7 +81,7 @@ namespace Pong
             graphics.ApplyChanges();
 
             // Don't allow ball to move just yet
-            ball.Enabled = false;  
+            ball.Enabled = false;
 
             base.Initialize();
         }
@@ -122,6 +122,7 @@ namespace Pong
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
+                paddleComputer.X = GraphicsDevice.Viewport.Width - paddleComputer.Width - 2;
             }
 
             // Wait until a second has passed before animating ball 
@@ -175,6 +176,25 @@ namespace Pong
                 // Go back up the screen and speed up
                 ball.ChangeVertDirection();
                 ball.SpeedUp();                
+            }
+
+            if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedY < 0)
+            {
+                swishSound.Play();
+
+                // If hitting the side of the paddle the ball is coming toward, 
+                // switch the ball's horz direction
+                float ballMiddle = (ball.X + ball.Width) / 2;
+                float paddleMiddle = (paddleComputer.X + paddleComputer.Width) / 2;
+                if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
+                    (ballMiddle > paddleMiddle && ball.SpeedX < 0))
+                {
+                    ball.ChangeHorzDirection();
+                }
+
+                // Go back up the screen and speed up
+                ball.ChangeVertDirection();
+                ball.SpeedUp();
             }
             
             base.Update(gameTime);

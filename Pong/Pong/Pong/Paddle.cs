@@ -27,7 +27,7 @@ namespace Pong
         // Paddle location
         protected Vector2 paddlePosition;
 
-        protected const float DEFAULT_X_SPEED = 250;
+        protected const float DEFAULT_Y_SPEED = 250;
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace Pong
             X = 2;
             Y = (GraphicsDevice.Viewport.Height - Height)/2;
 
-            Speed = DEFAULT_X_SPEED;
+            Speed = DEFAULT_Y_SPEED;
         }
     }
 
@@ -174,7 +174,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand"); //TODO: change the image to a cyber hand
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\AIPlayer");
         }
 
         /// <summary>
@@ -189,7 +189,30 @@ namespace Pong
             X = GraphicsDevice.Viewport.Width - Width -  2;
             Y = (GraphicsDevice.Viewport.Height - Height) / 2;
 
-            Speed = DEFAULT_X_SPEED;
+            Speed = DEFAULT_Y_SPEED;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            Ball ball = Game.Components[0] as Ball;
+
+            // Scale the movement based on time
+            float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // Move paddle, but don't allow movement off the screen
+
+            KeyboardState newKeyState = Keyboard.GetState();
+            if (ball.Y > paddlePosition.Y && Y + paddleSprite.Height
+                + moveDistance <= GraphicsDevice.Viewport.Height)
+            {
+                Y += moveDistance;
+            }
+            else if (ball.Y < paddlePosition.Y && Y - moveDistance >= 0)
+            {
+                Y -= moveDistance;
+            }
+
+            base.Update(gameTime);
         }
     }
 }

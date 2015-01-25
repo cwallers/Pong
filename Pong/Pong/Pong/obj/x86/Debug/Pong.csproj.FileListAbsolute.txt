@@ -18,3 +18,4 @@ C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojRe
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb

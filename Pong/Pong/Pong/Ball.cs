@@ -120,6 +120,17 @@ namespace Pong
 
             ballPosition.Y = (GraphicsDevice.Viewport.Height - Height)/2;
             ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
+
+            Random rNumber = new Random();
+            int direction = new int();
+
+            direction = rNumber.Next(0, 2);
+
+            if (direction == 0)
+            {
+                ballSpeed.X *= -1;
+                ballSpeed.Y *= -1;
+            }
         }
 
         /// <summary>
@@ -160,8 +171,8 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
-            ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
-            ballPosition.Y = (GraphicsDevice.Viewport.Height - Height) / 2;
+            ballPosition.X = 360;
+            ballPosition.Y = 200;
 
             base.Initialize();
         }
