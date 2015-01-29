@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
-      <Time>2015-01-24T15:57:45.6270543-06:00</Time>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
+      <Time>2015-01-28T18:29:11.5281421-06:00</Time>
     </Item>
     <Item>
       <Source>Images\hand.png</Source>
@@ -16,26 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
-      <Time>2015-01-24T15:57:45.6270543-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\swish.wav</Source>
-      <Name>Audio\swish</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-01-24T15:57:45.626054-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\crash.wav</Source>
-      <Name>Audio\crash</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-01-24T15:57:45.6250538-06:00</Time>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
+      <Time>2015-01-28T18:29:35.7096992-06:00</Time>
     </Item>
     <Item>
       <Source>Images\AIPlayer.png</Source>
@@ -43,8 +25,35 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb</Output>
-      <Time>2015-01-24T22:16:49.3413805-06:00</Time>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb</Output>
+      <Time>2015-01-28T17:10:49.6990348-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\swish.wav</Source>
+      <Name>Audio\swish</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
+      <Time>2015-01-28T17:10:49.6980345-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\crash.wav</Source>
+      <Name>Audio\crash</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
+      <Time>2015-01-28T17:10:49.6970381-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\gameScore.spritefont</Source>
+      <Name>Images\gameScore</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\gameScore.xnb</Output>
+      <Time>2015-01-28T19:02:45.7820462-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,10 +61,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

@@ -32,6 +32,8 @@ namespace Pong
         private Ball ball;
         private PaddleHuman paddleHuman;
         private PaddleComputer paddleComputer;
+        private HUD hud;
+        
 
         private SoundEffect swishSound;
         private SoundEffect crashSound;
@@ -47,10 +49,12 @@ namespace Pong
             ball = new Ball(this);
             paddleHuman = new PaddleHuman(this);
             paddleComputer = new PaddleComputer(this);
+            hud = new HUD(this);
 
             Components.Add(ball);
             Components.Add(paddleHuman);
             Components.Add(paddleComputer);
+            Components.Add(hud);
 
             // Call Window_ClientSizeChanged when screen size is changed
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
@@ -83,6 +87,9 @@ namespace Pong
             // Don't allow ball to move just yet
             ball.Enabled = false;
 
+            hud.compScore = 0;
+            hud.personScore = 0;
+
             base.Initialize();
         }
 
@@ -92,8 +99,11 @@ namespace Pong
         /// </summary>
         protected override void LoadContent()
         {
-            swishSound = Content.Load<SoundEffect>(@"Audio\swish");
-            crashSound = Content.Load<SoundEffect>(@"Audio\crash");
+            //swishSound = Content.Load<SoundEffect>(@"Audio\swish");
+            //crashSound = Content.Load<SoundEffect>(@"Audio\crash");
+
+            hud = new HUD();
+            hud.Font = Content.Load<SpriteFont>("Arial");
         }
 
         /// <summary>
@@ -147,10 +157,23 @@ namespace Pong
                 ball.ChangeVertDirection();
                 ball.Y = 0;
             }
-            else if (ball.X > maxX || ball.X < 0)
+            else if (ball.X > maxX)
             {
                 // Game over - reset ball
-                crashSound.Play();
+                //crashSound.Play();
+                hud.personScore += 1;
+                ball.Reset();
+
+                // Reset timer and stop ball's Update() from executing
+                delayTimer = 0;
+                ball.Enabled = false;
+            }
+
+            else if (ball.X < 0)
+            {
+                // Game over - reset ball
+                //crashSound.Play();
+                hud.compScore += 1;
                 ball.Reset();
 
                 // Reset timer and stop ball's Update() from executing
@@ -161,7 +184,7 @@ namespace Pong
             // Collision?  Check rectangle intersection between ball and hand
             if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedY > 0)
             {
-                swishSound.Play();
+                //swishSound.Play();
 
                 // If hitting the side of the paddle the ball is coming toward, 
                 // switch the ball's horz direction
@@ -180,7 +203,7 @@ namespace Pong
 
             if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedY < 0)
             {
-                swishSound.Play();
+                //swishSound.Play();
 
                 // If hitting the side of the paddle the ball is coming toward, 
                 // switch the ball's horz direction
@@ -207,7 +230,7 @@ namespace Pong
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            
+
             base.Draw(gameTime);
         }
     }

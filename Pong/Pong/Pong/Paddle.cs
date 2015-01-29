@@ -174,7 +174,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\AIPlayer");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
         }
 
         /// <summary>
@@ -202,16 +202,52 @@ namespace Pong
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-            if (ball.Y > paddlePosition.Y && Y + paddleSprite.Height
-                + moveDistance <= GraphicsDevice.Viewport.Height)
+         
+            //// down
+            //if ((Y + (Height / 2)) < (ball.Y - (ball.Height / 2)) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
+            //{
+            //    Y += moveDistance;
+            //}
+            //// slow down
+            //else if ((Y + (Height / 2)) > (ball.Y - (ball.Height / 2)) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
+            //{
+            //    Y += moveDistance * ((ball.Y - Y) / 100);
+            //}
+
+            //// up
+            // else if ((Y - (Height / 2)) > (ball.Y + (ball.Height / 2)) && (Y - paddleSprite.Height - moveDistance) >= 0)
+            // {
+            //     Y -= moveDistance;
+            // }
+            // // slow up
+            // else if ((Y - (Height / 2)) < (ball.Y + (ball.Height / 2)) && (Y - paddleSprite.Height - moveDistance) >= 0)
+            // {
+            //     Y -= moveDistance * ((ball.Y + Y) / 100);
+            // }
+
+
+
+            // down
+            if (Y <= ball.Y - Height / 2 - ball.Height / 2 && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
             {
                 Y += moveDistance;
             }
-            else if (ball.Y < paddlePosition.Y && Y - moveDistance >= 0)
+            // slow adjust
+            else if ((Y > ball.Y - ball.Height/2 && Y < ball.Y + ball.Height/2) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
+            {
+                Y += moveDistance * ((ball.Y - Y) / 100);
+            }
+            // up
+            else if (Y >= ball.Y + Height / 2 + ball.Height / 2 && (Y - paddleSprite.Height - moveDistance) >= 0)
             {
                 Y -= moveDistance;
             }
+            //stop
 
+            else if(Y == ball.Y)
+            {
+                //don't move
+            }
             base.Update(gameTime);
         }
     }

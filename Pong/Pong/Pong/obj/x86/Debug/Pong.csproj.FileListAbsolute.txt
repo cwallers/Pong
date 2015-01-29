@@ -19,3 +19,15 @@ C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
 C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojResolveAssemblyReference.cache
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
+C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\gameScore.xnb

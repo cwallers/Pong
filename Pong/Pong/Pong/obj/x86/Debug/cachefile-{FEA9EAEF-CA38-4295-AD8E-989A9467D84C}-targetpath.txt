@@ -1,5 +1,6 @@
 Content\Images\basketball.xnb
 Content\Images\hand.xnb
+Content\Images\AIPlayer.xnb
 Content\Audio\swish.xnb
 Content\Audio\crash.xnb
-Content\Images\AIPlayer.xnb
+Content\Images\gameScore.xnb
