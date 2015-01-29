@@ -22,8 +22,8 @@ namespace Pong
         private ContentManager contentManager;
 
         // Default speed of ball
-        private const float DEFAULT_X_SPEED = 50;
-        private const float DEFAULT_Y_SPEED = 50;
+        private const float DEFAULT_X_SPEED = 200;
+        private const float DEFAULT_Y_SPEED = 200;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;

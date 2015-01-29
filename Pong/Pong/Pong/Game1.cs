@@ -102,7 +102,7 @@ namespace Pong
             //swishSound = Content.Load<SoundEffect>(@"Audio\swish");
             //crashSound = Content.Load<SoundEffect>(@"Audio\crash");
 
-            hud = new HUD();
+            hud = new HUD(this);
             hud.Font = Content.Load<SpriteFont>("Arial");
         }
 
@@ -182,7 +182,7 @@ namespace Pong
             }
 
             // Collision?  Check rectangle intersection between ball and hand
-            if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedY > 0)
+            if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
             {
                 //swishSound.Play();
 
@@ -197,11 +197,11 @@ namespace Pong
                 }
 
                 // Go back up the screen and speed up
-                ball.ChangeVertDirection();
+                //ball.ChangeVertDirection();
                 ball.SpeedUp();                
             }
 
-            if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedY < 0)
+            if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
             {
                 //swishSound.Play();
 
@@ -216,7 +216,7 @@ namespace Pong
                 }
 
                 // Go back up the screen and speed up
-                ball.ChangeVertDirection();
+                //ball.ChangeVertDirection();
                 ball.SpeedUp();
             }
             

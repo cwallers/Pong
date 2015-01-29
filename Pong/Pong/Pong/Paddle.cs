@@ -202,52 +202,58 @@ namespace Pong
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-         
+
+
+            //TEST VERSION
+
+            float paddleCenterY = Y + (Height / 2);
+            float ballCenterY = ball.Y + (ball.Height / 2);
+
+            float move = moveDistance;
+            float edge = GraphicsDevice.Viewport.Height - Height;
+
+            if (paddleCenterY > ballCenterY)
+            {
+                move *= -1;
+                edge = 0;
+            }
+
+            if (Math.Abs(paddleCenterY - ballCenterY) < ((ball.Height / 2) + (Height / 2)))     //paren - thesis!!
+            {
+                move *= (Math.Abs(paddleCenterY - ballCenterY)/((ball.Height/2)+(Height/2)));
+            }
+
+            Y += move;
+
+            if ( Y< 0 || Y + Height > GraphicsDevice.Viewport.Height)
+            {
+                Y = edge;
+            }
+
+
+            //ORIGINAL VERSION
+
             //// down
-            //if ((Y + (Height / 2)) < (ball.Y - (ball.Height / 2)) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
+            //if (Y <= ball.Y - Height / 2 - ball.Height / 2 && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
             //{
             //    Y += moveDistance;
             //}
-            //// slow down
-            //else if ((Y + (Height / 2)) > (ball.Y - (ball.Height / 2)) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
+            //// slow adjust
+            //else if ((Y > ball.Y - ball.Height/2 && Y < ball.Y + ball.Height/2) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
             //{
             //    Y += moveDistance * ((ball.Y - Y) / 100);
             //}
-
             //// up
-            // else if ((Y - (Height / 2)) > (ball.Y + (ball.Height / 2)) && (Y - paddleSprite.Height - moveDistance) >= 0)
-            // {
-            //     Y -= moveDistance;
-            // }
-            // // slow up
-            // else if ((Y - (Height / 2)) < (ball.Y + (ball.Height / 2)) && (Y - paddleSprite.Height - moveDistance) >= 0)
-            // {
-            //     Y -= moveDistance * ((ball.Y + Y) / 100);
-            // }
+            //else if (Y >= ball.Y + Height / 2 + ball.Height / 2 && (Y - paddleSprite.Height - moveDistance) >= 0)
+            //{
+            //    Y -= moveDistance;
+            //}
+            ////stop
 
-
-
-            // down
-            if (Y <= ball.Y - Height / 2 - ball.Height / 2 && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
-            {
-                Y += moveDistance;
-            }
-            // slow adjust
-            else if ((Y > ball.Y - ball.Height/2 && Y < ball.Y + ball.Height/2) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
-            {
-                Y += moveDistance * ((ball.Y - Y) / 100);
-            }
-            // up
-            else if (Y >= ball.Y + Height / 2 + ball.Height / 2 && (Y - paddleSprite.Height - moveDistance) >= 0)
-            {
-                Y -= moveDistance;
-            }
-            //stop
-
-            else if(Y == ball.Y)
-            {
-                //don't move
-            }
+            //else if(Y == ball.Y)
+            //{
+            //    //don't move
+            //}
             base.Update(gameTime);
         }
     }
