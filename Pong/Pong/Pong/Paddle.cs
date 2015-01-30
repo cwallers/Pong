@@ -230,30 +230,6 @@ namespace Pong
                 Y = edge;
             }
 
-
-            //ORIGINAL VERSION
-
-            //// down
-            //if (Y <= ball.Y - Height / 2 - ball.Height / 2 && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
-            //{
-            //    Y += moveDistance;
-            //}
-            //// slow adjust
-            //else if ((Y > ball.Y - ball.Height/2 && Y < ball.Y + ball.Height/2) && (Y + paddleSprite.Height + moveDistance) <= (GraphicsDevice.Viewport.Height))
-            //{
-            //    Y += moveDistance * ((ball.Y - Y) / 100);
-            //}
-            //// up
-            //else if (Y >= ball.Y + Height / 2 + ball.Height / 2 && (Y - paddleSprite.Height - moveDistance) >= 0)
-            //{
-            //    Y -= moveDistance;
-            //}
-            ////stop
-
-            //else if(Y == ball.Y)
-            //{
-            //    //don't move
-            //}
             base.Update(gameTime);
         }
     }

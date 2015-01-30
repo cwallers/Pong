@@ -32,11 +32,13 @@ namespace Pong
         private Ball ball;
         private PaddleHuman paddleHuman;
         private PaddleComputer paddleComputer;
-        private HUD hud;
-        
+        protected SpriteBatch spriteBatch;
+        private SpriteFont font;
+        protected int playerScore = 0;
+        protected int computerScore = 0;
 
-        private SoundEffect swishSound;
-        private SoundEffect crashSound;
+        //private SoundEffect swishSound;
+        //private SoundEffect crashSound;
 
         // Used to delay between rounds 
         private float delayTimer = 0;
@@ -49,12 +51,10 @@ namespace Pong
             ball = new Ball(this);
             paddleHuman = new PaddleHuman(this);
             paddleComputer = new PaddleComputer(this);
-            hud = new HUD(this);
 
             Components.Add(ball);
             Components.Add(paddleHuman);
             Components.Add(paddleComputer);
-            Components.Add(hud);
 
             // Call Window_ClientSizeChanged when screen size is changed
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
@@ -87,9 +87,6 @@ namespace Pong
             // Don't allow ball to move just yet
             ball.Enabled = false;
 
-            hud.compScore = 0;
-            hud.personScore = 0;
-
             base.Initialize();
         }
 
@@ -99,11 +96,10 @@ namespace Pong
         /// </summary>
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             //swishSound = Content.Load<SoundEffect>(@"Audio\swish");
             //crashSound = Content.Load<SoundEffect>(@"Audio\crash");
-
-            hud = new HUD(this);
-            hud.Font = Content.Load<SpriteFont>("Arial");
+            font = Content.Load<SpriteFont>("myFont");
         }
 
         /// <summary>
@@ -161,7 +157,7 @@ namespace Pong
             {
                 // Game over - reset ball
                 //crashSound.Play();
-                hud.personScore += 1;
+                playerScore += 1;
                 ball.Reset();
 
                 // Reset timer and stop ball's Update() from executing
@@ -173,7 +169,7 @@ namespace Pong
             {
                 // Game over - reset ball
                 //crashSound.Play();
-                hud.compScore += 1;
+                computerScore += 1;
                 ball.Reset();
 
                 // Reset timer and stop ball's Update() from executing
@@ -231,7 +227,17 @@ namespace Pong
         {
             GraphicsDevice.Clear(Color.White);
 
+            spriteBatch.Begin();
+            DrawText();
+            spriteBatch.End();
+
             base.Draw(gameTime);
+        }
+
+        private void DrawText()
+        {
+            spriteBatch.DrawString(font, playerScore.ToString(), new Vector2(20, 20), Color.Black);
+            spriteBatch.DrawString(font, computerScore.ToString(), new Vector2(GraphicsDevice.Viewport.Width - 30, 20), Color.Black);
         }
     }
 }

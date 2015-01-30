@@ -22,8 +22,8 @@ namespace Pong
         private ContentManager contentManager;
 
         // Default speed of ball
-        private const float DEFAULT_X_SPEED = 200;
-        private const float DEFAULT_Y_SPEED = 200;
+        private const float DEFAULT_X_SPEED = 150;
+        private const float DEFAULT_Y_SPEED = 150;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
@@ -37,7 +37,7 @@ namespace Pong
         // Ball's motion
         Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
         #endregion
-
+       
         #region Properties
         /// <summary>
         /// Gets or sets the ball's horizontal speed.
