@@ -29,6 +29,10 @@ namespace Pong
 
         protected const float DEFAULT_Y_SPEED = 250;
 
+        //used for the switching of controls
+        protected bool isMouseControl = false;
+        protected KeyboardState oldKBState = new KeyboardState();
+        protected MouseState mouseStateCurrent, mouseStatePrevious;
         #endregion
 
         #region Properties
@@ -122,7 +126,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\squirtle");
         }
 
         /// <summary>
@@ -131,22 +135,46 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+
+
+            //allows for use of mouse and key shift by pressing the space bar
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && !oldKBState.IsKeyDown(Keys.Space))
+            {
+                isMouseControl = !isMouseControl; // reverse the control keys
+            }
+
             // Scale the movement based on time
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Down) && Y + paddleSprite.Height
-                + moveDistance <= GraphicsDevice.Viewport.Height)
+            if (isMouseControl) // TODO: move more slowly and if off/on screen mouse transitions smoother
             {
-                Y += moveDistance;
+                if (mouseStateCurrent.Y > mouseStatePrevious.Y && (mouseStateCurrent.Y + paddleSprite.Height / 2 <= GraphicsDevice.Viewport.Height))
+                {
+                    Y = mouseStateCurrent.Y - paddleSprite.Height/2;
+                }
+                else if (mouseStateCurrent.Y < mouseStatePrevious.Y && mouseStateCurrent.Y - paddleSprite.Height / 2 >= 0)
+                {
+                    Y = mouseStateCurrent.Y - paddleSprite.Height / 2;
+                }
+                mouseStatePrevious = mouseStateCurrent;
+                mouseStateCurrent = Mouse.GetState();
             }
-            else if (newKeyState.IsKeyDown(Keys.Up) && Y - moveDistance >= 0)
+            else
             {
-                Y -= moveDistance;
+                if (newKeyState.IsKeyDown(Keys.Down) && Y + paddleSprite.Height
+                    + moveDistance <= GraphicsDevice.Viewport.Height)
+                {
+                    Y += moveDistance;
+                }
+                else if (newKeyState.IsKeyDown(Keys.Up) && Y - moveDistance >= 0)
+                {
+                    Y -= moveDistance;
+                }
             }
-
+            oldKBState = newKeyState;
             base.Update(gameTime);
         }
 
@@ -174,7 +202,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\Pikachu2");
         }
 
         /// <summary>

@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Images\basketball.png</Source>
-      <Name>Images\basketball</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
-      <Time>2015-02-01T18:45:32.4572175-06:00</Time>
-    </Item>
-    <Item>
       <Source>Images\hand.png</Source>
       <Name>Images\hand</Name>
       <Importer>TextureImporter</Importer>
@@ -54,6 +45,24 @@
       <Options>None</Options>
       <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
       <Time>2015-02-01T20:02:06.6559907-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Pikachu2.png</Source>
+      <Name>Images\Pikachu2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
+      <Time>2015-02-02T10:03:45.1140099-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\squirtle.jpg</Source>
+      <Name>Images\squirtle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
+      <Time>2015-02-02T16:13:10.0257121-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

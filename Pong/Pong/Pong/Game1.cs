@@ -27,6 +27,7 @@ namespace Pong
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        #region Game1 Properties
         private GraphicsDeviceManager graphics;
 
         private Ball ball;
@@ -42,7 +43,9 @@ namespace Pong
 
         // Used to delay between rounds 
         private float delayTimer = 0;
-
+        
+        #endregion
+       
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

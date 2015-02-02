@@ -130,7 +130,7 @@ namespace Pong
 
             Random rNumber = new Random();
             int direction = new int();
-
+            // random function to choose direction
             direction = rNumber.Next(0, 2);
 
             if (direction == 0)
