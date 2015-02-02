@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
-      <Time>2015-01-28T18:29:11.5281421-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
+      <Time>2015-02-01T18:45:32.4572175-06:00</Time>
     </Item>
     <Item>
       <Source>Images\hand.png</Source>
@@ -16,17 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
-      <Time>2015-01-28T18:29:35.7096992-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Images\AIPlayer.png</Source>
-      <Name>Images\AIPlayer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\AIPlayer.xnb</Output>
-      <Time>2015-01-28T17:10:49.6990348-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
+      <Time>2015-02-01T18:45:32.4612178-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\swish.wav</Source>
@@ -34,8 +25,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-01-28T17:10:49.6980345-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
+      <Time>2015-02-01T18:45:32.4522173-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\crash.wav</Source>
@@ -43,8 +34,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-01-28T17:10:49.6970381-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
+      <Time>2015-02-01T18:45:32.448217-06:00</Time>
     </Item>
     <Item>
       <Source>myFont.spritefont</Source>
@@ -52,19 +43,28 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
-      <Time>2015-01-29T17:49:48.5681488-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Time>2015-02-01T18:45:32.465218-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\pballss.png</Source>
+      <Name>Images\pballss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
+      <Time>2015-02-01T20:02:06.6559907-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\cwallers\Desktop\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -92,8 +92,8 @@
         <Value>2010-08-23T13:41:18-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2015-01-15T16:01:55.8289053-06:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-01-29T14:22:31.7489809-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

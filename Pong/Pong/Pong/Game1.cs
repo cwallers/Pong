@@ -80,7 +80,7 @@ namespace Pong
             IsMouseVisible = true;
 
             // Set the window's title bar
-            Window.Title = "Basketball Pong!";
+            Window.Title = "Pong!";
 
             graphics.ApplyChanges();
 
@@ -100,6 +100,7 @@ namespace Pong
             //swishSound = Content.Load<SoundEffect>(@"Audio\swish");
             //crashSound = Content.Load<SoundEffect>(@"Audio\crash");
             font = Content.Load<SpriteFont>("myFont");
+
         }
 
         /// <summary>
@@ -118,6 +119,7 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
