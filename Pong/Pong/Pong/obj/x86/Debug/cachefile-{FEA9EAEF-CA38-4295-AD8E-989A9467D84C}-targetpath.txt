@@ -1,7 +1,7 @@
 Content\Images\hand.xnb
-Content\Audio\swish.xnb
-Content\Audio\crash.xnb
-Content\myFont.xnb
 Content\Images\pballss.xnb
 Content\Images\Pikachu2.xnb
 Content\Images\squirtle.xnb
+Content\Audio\swish.xnb
+Content\Audio\crash.xnb
+Content\myFont.xnb

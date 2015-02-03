@@ -27,7 +27,11 @@ namespace Pong
         // Paddle location
         protected Vector2 paddlePosition;
 
-        protected const float DEFAULT_Y_SPEED = 250;
+        //Paddle velocity
+        protected float velocity = 0;
+
+        //Default paddle speed
+        protected const float DEFAULT_Y_SPEED = 500;
 
         //used for the switching of controls
         protected bool isMouseControl = false;
@@ -85,6 +89,18 @@ namespace Pong
             }
         }
 
+        /// <summary>
+        /// Gets the paddle's last recorded velocity.
+        /// </summary>
+        public float Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+        }
+
+
         #endregion
 
         public Paddle(Game game)
@@ -135,7 +151,7 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-
+            Ball ball = Game.Components[0] as Ball;
 
             //allows for use of mouse and key shift by pressing the space bar
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && !oldKBState.IsKeyDown(Keys.Space))
@@ -147,20 +163,51 @@ namespace Pong
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Move paddle, but don't allow movement off the screen
-
+            
             KeyboardState newKeyState = Keyboard.GetState();
+            mouseStatePrevious = mouseStateCurrent;
+            mouseStateCurrent = Mouse.GetState();
+
+            float yBeforeMove = Y;
+
             if (isMouseControl) // TODO: move more slowly and if off/on screen mouse transitions smoother
             {
-                if (mouseStateCurrent.Y > mouseStatePrevious.Y && (mouseStateCurrent.Y + paddleSprite.Height / 2 <= GraphicsDevice.Viewport.Height))
+                //if (mouseStateCurrent.Y > mouseStatePrevious.Y && (mouseStateCurrent.Y + paddleSprite.Height / 2 <= GraphicsDevice.Viewport.Height))
+                //{
+                //    Y = mouseStateCurrent.Y - paddleSprite.Height/2;
+                //}
+                //else if (mouseStateCurrent.Y < mouseStatePrevious.Y && mouseStateCurrent.Y - paddleSprite.Height / 2 >= 0)
+                //{
+                //    Y = mouseStateCurrent.Y - paddleSprite.Height / 2;
+                //}
+                //mouseStatePrevious = mouseStateCurrent;
+                //mouseStateCurrent = Mouse.GetState();
+
+                float paddleCenterY = Y + (paddleSprite.Height / 2);
+
+                float move = moveDistance;
+                float edge = GraphicsDevice.Viewport.Height - Height;
+
+                if (paddleCenterY > mouseStateCurrent.Y)
                 {
-                    Y = mouseStateCurrent.Y - paddleSprite.Height/2;
+                    move *= -1;
+                    edge = 0;
                 }
-                else if (mouseStateCurrent.Y < mouseStatePrevious.Y && mouseStateCurrent.Y - paddleSprite.Height / 2 >= 0)
+
+                if (Math.Abs(paddleCenterY - mouseStateCurrent.Y) < ((ball.Height / 2) + (paddleSprite.Height / 2)))     //paren - thesis!!
                 {
-                    Y = mouseStateCurrent.Y - paddleSprite.Height / 2;
+                    move *= (Math.Abs(paddleCenterY - mouseStateCurrent.Y) / ((ball.Height / 2) + (paddleSprite.Height / 2)));
                 }
-                mouseStatePrevious = mouseStateCurrent;
-                mouseStateCurrent = Mouse.GetState();
+
+                Y += move;
+
+                velocity = yBeforeMove - Y;
+
+                if (Y < 0 || Y + Height > GraphicsDevice.Viewport.Height)
+                {
+                    Y = edge;
+                }
+
             }
             else
             {
@@ -174,6 +221,7 @@ namespace Pong
                     Y -= moveDistance;
                 }
             }
+
             oldKBState = newKeyState;
             base.Update(gameTime);
         }
@@ -230,9 +278,6 @@ namespace Pong
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-
-
-            //TEST VERSION
 
             float paddleCenterY = Y + (Height / 2);
             float ballCenterY = ball.Y + (ball.Height / 2);
