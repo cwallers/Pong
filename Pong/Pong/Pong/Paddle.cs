@@ -154,7 +154,7 @@ namespace Pong
             Ball ball = Game.Components[0] as Ball;
 
             //allows for use of mouse and key shift by pressing the space bar
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && !oldKBState.IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.M) && !oldKBState.IsKeyDown(Keys.M))
             {
                 isMouseControl = !isMouseControl; // reverse the control keys
             }

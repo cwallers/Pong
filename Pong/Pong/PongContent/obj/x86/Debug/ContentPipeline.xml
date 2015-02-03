@@ -7,35 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
-      <Time>2015-02-01T18:45:32.4612178-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\swish.wav</Source>
-      <Name>Audio\swish</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-02-01T18:45:32.4522173-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\crash.wav</Source>
-      <Name>Audio\crash</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-02-01T18:45:32.448217-06:00</Time>
-    </Item>
-    <Item>
-      <Source>myFont.spritefont</Source>
-      <Name>myFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
-      <Time>2015-02-01T18:45:32.465218-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
+      <Time>2015-02-03T15:31:16.7591915-06:00</Time>
     </Item>
     <Item>
       <Source>Images\pballss.png</Source>
@@ -43,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
-      <Time>2015-02-01T20:02:06.6559907-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
+      <Time>2015-02-03T15:31:16.7611916-06:00</Time>
     </Item>
     <Item>
       <Source>Images\Pikachu2.png</Source>
@@ -52,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
-      <Time>2015-02-02T10:03:45.1140099-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
+      <Time>2015-02-03T15:31:16.7571913-06:00</Time>
     </Item>
     <Item>
       <Source>Images\squirtle.jpg</Source>
@@ -61,8 +34,35 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
-      <Time>2015-02-02T16:13:10.0257121-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
+      <Time>2015-02-03T15:31:16.7631917-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\swish.wav</Source>
+      <Name>Audio\swish</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
+      <Time>2015-02-03T15:31:16.7551912-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\crash.wav</Source>
+      <Name>Audio\crash</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
+      <Time>2015-02-03T15:31:16.7521911-06:00</Time>
+    </Item>
+    <Item>
+      <Source>myFont.spritefont</Source>
+      <Name>myFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Time>2015-02-03T15:31:16.768192-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -70,10 +70,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
