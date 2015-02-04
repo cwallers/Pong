@@ -43,6 +43,9 @@ namespace Pong
         // Framerate stuff
         int timeSinceLastFrame = 0;
         int millisecondsPerFrame = 50;
+
+        //file content handles
+        protected String spriteImage = @"Content\Images\pballss";
         #endregion
        
         #region Properties
@@ -191,7 +194,7 @@ namespace Pong
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            texture = contentManager.Load<Texture2D>(@"Content\Images\pballss");
+            texture = contentManager.Load<Texture2D>(spriteImage);
         }
 
         /// <summary>

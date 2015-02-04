@@ -38,10 +38,6 @@ namespace Pong
         protected int playerScore = 0;
         protected int computerScore = 0;
 
-        //sound
-        protected SoundEffect playerSound;
-        protected SoundEffect computerSound;
-
         // Used to delay between rounds 
         private float delayTimer = 0;
 
@@ -59,6 +55,25 @@ namespace Pong
         Texture2D background;
         Rectangle mainFrame; //hold limits of the mainscreen
 
+        //sound
+        protected SoundEffect playerSoundEffect;
+        protected SoundEffect computerSoundEffect;
+        protected SoundEffect playerPointSoundEffect;
+        protected SoundEffect computerPointSoundEffect;
+        protected SoundEffect playerWinSoundEffect;
+        protected SoundEffect computerWinSoundEffect;
+        
+        //file content handles
+        protected String backgroundImage = @"Images\bg";
+        protected String playerAudio = @"Audio\Squirtle";
+        protected String computerAudio = @"Audio\Pikachu";
+        protected String playerPointAudio = @"Audio\WOW";
+        protected String computerPointAudio = @"Audio\Woops that missed";
+        protected String playerWinAudio = @"Audio\And there goes the battle";
+        protected String computerWinAudio = @"Audio\And there goes the battle";
+
+        //ensures it is not played more than once
+        protected bool isPlayingWinSoundEffect = false;
         #endregion
        
         public Game1()
@@ -87,16 +102,19 @@ namespace Pong
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// Calls initilizeGame() to complete work to enable a restart of the game later on
         /// </summary>
         protected override void Initialize()
         {
             initilizeGame();
         }
-
+        
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
         protected void initilizeGame() 
         {
             // Make mouse visible
@@ -113,7 +131,7 @@ namespace Pong
 
             // Don't allow ball to move just yet
             ball.Enabled = false;
-
+            isPlayingWinSoundEffect = false;
             creditScreen = false;
 
             base.Initialize();
@@ -127,11 +145,15 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //load background
-            background = Content.Load<Texture2D>(@"Images\bg");
+            background = Content.Load<Texture2D>(backgroundImage);
             //set rectangle
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            playerSound = Content.Load<SoundEffect>(@"Audio\Squirtle");
-            computerSound = Content.Load<SoundEffect>(@"Audio\Pikachu");
+            playerSoundEffect = Content.Load<SoundEffect>(playerAudio);
+            computerSoundEffect = Content.Load<SoundEffect>(computerAudio);
+            playerPointSoundEffect = Content.Load<SoundEffect>(playerPointAudio);
+            computerPointSoundEffect = Content.Load<SoundEffect>(computerPointAudio);
+            playerWinSoundEffect = Content.Load<SoundEffect>(playerWinAudio);
+            computerWinSoundEffect = Content.Load<SoundEffect>(computerWinAudio);
             font = Content.Load<SpriteFont>("myFont");
 
         }
@@ -171,7 +193,7 @@ namespace Pong
                 mainFrame.Width = GraphicsDevice.Viewport.Width;
             }
 
-            // Shows game credit screen
+            // Shows game credit screen (pause)
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) && !oldKeyState.IsKeyDown(Keys.Escape))
             {
                 creditScreen = !creditScreen;
@@ -190,6 +212,16 @@ namespace Pong
                 }
                 else if (!Keyboard.GetState().IsKeyDown(Keys.N) && (playerScore == WIN_SCORE || computerScore == WIN_SCORE))
                 {
+                    if (playerScore == WIN_SCORE && !isPlayingWinSoundEffect)
+                    {
+                        isPlayingWinSoundEffect = true;
+                        playerWinSoundEffect.Play();
+                    }
+                    else if (computerScore == WIN_SCORE && !isPlayingWinSoundEffect)
+                    {
+                        isPlayingWinSoundEffect = true;
+                        computerWinSoundEffect.Play();
+                    }
                     ball.Enabled = false;
                 }
                 else
@@ -220,7 +252,7 @@ namespace Pong
                     else if (ball.X > maxX)
                     {
                         // Game over - reset ball
-                        //crashSound.Play();
+                        playerPointSoundEffect.Play();
                         playerScore += 1;
                         ball.Reset();
 
@@ -232,7 +264,7 @@ namespace Pong
                     else if (ball.X < 0)
                     {
                         // Game over - reset ball
-                        //crashSound.Play();
+                        computerPointSoundEffect.Play();
                         computerScore += 1;
                         ball.Reset();
 
@@ -244,7 +276,7 @@ namespace Pong
                     // Collision?  Check rectangle intersection between ball and hand
                     if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
                     {
-                        playerSound.Play();
+                        playerSoundEffect.Play();
 
                         // If hitting the side of the paddle the ball is coming toward, 
                         // switch the ball's horz direction
@@ -263,7 +295,7 @@ namespace Pong
 
                     if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
                     {
-                        computerSound.Play();
+                        computerSoundEffect.Play();
 
                         // If hitting the side of the paddle the ball is coming toward, 
                         // switch the ball's horz direction
@@ -295,13 +327,16 @@ namespace Pong
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            DrawText();
             spriteBatch.Draw(background, mainFrame, Color.White);
+            DrawText();
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
+       
+        /// <summary>
+        /// This is called when the game should draw the text
+        /// </summary>
         private void DrawText()
         {
             spriteBatch.DrawString(font, playerScore.ToString(), new Vector2(20, 20), Color.Black);
@@ -310,12 +345,12 @@ namespace Pong
             if (playerScore == WIN_SCORE)
             {
                 spriteBatch.DrawString(font, winnerMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + winnerMsg.Length
-                    , GraphicsDevice.Viewport.Height / 2), Color.Green);
+                    , GraphicsDevice.Viewport.Height / 2), Color.Black);
             }
             else if (computerScore == WIN_SCORE)
             {
                 spriteBatch.DrawString(font, loserMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + loserMsg.Length
-                    , GraphicsDevice.Viewport.Height / 2), Color.Red);
+                    , GraphicsDevice.Viewport.Height / 2), Color.Black);
             }
 
             if (creditScreen)

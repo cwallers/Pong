@@ -37,6 +37,10 @@ namespace Pong
         protected bool isMouseControl = false;
         protected KeyboardState oldKBState = new KeyboardState();
         protected MouseState mouseStateCurrent, mouseStatePrevious;
+        
+        //file content handles
+        protected String playerImage = @"Content\Images\squirtle";
+        protected String computerImage = @"Content\Images\Pikachu2";
         #endregion
 
         #region Properties
@@ -117,7 +121,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+            paddleSprite = contentManager.Load<Texture2D>(playerImage);
         }
 
         /// <summary>
@@ -141,8 +145,7 @@ namespace Pong
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\squirtle");
+            paddleSprite = contentManager.Load<Texture2D>(playerImage);
         }
 
         /// <summary>
@@ -170,19 +173,8 @@ namespace Pong
 
             float yBeforeMove = Y;
 
-            if (isMouseControl) // TODO: move more slowly and if off/on screen mouse transitions smoother
+            if (isMouseControl)
             {
-                //if (mouseStateCurrent.Y > mouseStatePrevious.Y && (mouseStateCurrent.Y + paddleSprite.Height / 2 <= GraphicsDevice.Viewport.Height))
-                //{
-                //    Y = mouseStateCurrent.Y - paddleSprite.Height/2;
-                //}
-                //else if (mouseStateCurrent.Y < mouseStatePrevious.Y && mouseStateCurrent.Y - paddleSprite.Height / 2 >= 0)
-                //{
-                //    Y = mouseStateCurrent.Y - paddleSprite.Height / 2;
-                //}
-                //mouseStatePrevious = mouseStateCurrent;
-                //mouseStateCurrent = Mouse.GetState();
-
                 float paddleCenterY = Y + (paddleSprite.Height / 2);
 
                 float move = moveDistance;
@@ -249,8 +241,7 @@ namespace Pong
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\Pikachu2");
+            paddleSprite = contentManager.Load<Texture2D>(computerImage);
         }
 
         /// <summary>

@@ -18,10 +18,8 @@ namespace Pong
         protected Texture2D texture;
         public Vector2 position = Vector2.Zero;
         public Color color = Color.White;
-        public Vector2 origin;
         public float rotation = 0f;
         public float scale = 1f;
-        public SpriteEffects spriteEffect;
         protected Rectangle[] rectangles;
         protected int frameIndex = 0;
 
@@ -30,6 +28,7 @@ namespace Pong
 
         //default to 20 frames per second
         private float timeToUpdate = 0.05f;
+
         #endregion
 
         #region Sprite Methods
@@ -61,7 +60,7 @@ namespace Pong
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, rectangles[frameIndex],
-                color, rotation, origin, scale, spriteEffect, 0f);
+                color, rotation, new Vector2(), scale, 0, 0f);
         }
 
         public void Update(GameTime gameTime)

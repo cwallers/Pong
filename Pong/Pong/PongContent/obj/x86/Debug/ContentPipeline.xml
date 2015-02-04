@@ -64,6 +64,33 @@
       <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
       <Time>2015-02-04T00:20:00.564653-06:00</Time>
     </Item>
+    <Item>
+      <Source>Audio\And there goes the battle.mp3</Source>
+      <Name>Audio\And there goes the battle</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
+      <Time>2015-02-04T16:19:27.165957-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Woops that missed.mp3</Source>
+      <Name>Audio\Woops that missed</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
+      <Time>2015-02-04T14:42:28.5610217-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\WOW.mp3</Source>
+      <Name>Audio\WOW</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
+      <Time>2015-02-04T14:43:11.9835053-06:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
