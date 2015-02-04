@@ -38,8 +38,9 @@ namespace Pong
         protected int playerScore = 0;
         protected int computerScore = 0;
 
-        //private SoundEffect swishSound;
-        //private SoundEffect crashSound;
+        //sound
+        protected SoundEffect playerSound;
+        protected SoundEffect computerSound;
 
         // Used to delay between rounds 
         private float delayTimer = 0;
@@ -53,6 +54,11 @@ namespace Pong
         private bool creditScreen = false;
         private string creditMsg = "Catherine Wallers \n Nathan Roberts \n Press 'E' to play again";
         private KeyboardState oldKeyState; 
+
+        //background 
+        Texture2D background;
+        Rectangle mainFrame; //hold limits of the mainscreen
+
         #endregion
        
         public Game1()
@@ -120,8 +126,12 @@ namespace Pong
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //swishSound = Content.Load<SoundEffect>(@"Audio\swish");
-            //crashSound = Content.Load<SoundEffect>(@"Audio\crash");
+            //load background
+            background = Content.Load<Texture2D>(@"Images\bg");
+            //set rectangle
+            mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            playerSound = Content.Load<SoundEffect>(@"Audio\Squirtle");
+            computerSound = Content.Load<SoundEffect>(@"Audio\Pikachu");
             font = Content.Load<SpriteFont>("myFont");
 
         }
@@ -156,6 +166,9 @@ namespace Pong
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
                 paddleComputer.X = GraphicsDevice.Viewport.Width - paddleComputer.Width - 2;
+
+                mainFrame.Height = GraphicsDevice.Viewport.Height;
+                mainFrame.Width = GraphicsDevice.Viewport.Width;
             }
 
             // Shows game credit screen
@@ -231,7 +244,7 @@ namespace Pong
                     // Collision?  Check rectangle intersection between ball and hand
                     if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
                     {
-                        //swishSound.Play();
+                        playerSound.Play();
 
                         // If hitting the side of the paddle the ball is coming toward, 
                         // switch the ball's horz direction
@@ -250,7 +263,7 @@ namespace Pong
 
                     if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
                     {
-                        //swishSound.Play();
+                        computerSound.Play();
 
                         // If hitting the side of the paddle the ball is coming toward, 
                         // switch the ball's horz direction
@@ -283,6 +296,7 @@ namespace Pong
 
             spriteBatch.Begin();
             DrawText();
+            spriteBatch.Draw(background, mainFrame, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
