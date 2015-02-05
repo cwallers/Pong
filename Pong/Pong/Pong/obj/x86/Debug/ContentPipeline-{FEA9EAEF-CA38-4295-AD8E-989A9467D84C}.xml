@@ -2,22 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Images\hand.png</Source>
-      <Name>Images\hand</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
-      <Time>2015-02-01T14:36:39.9362053-06:00</Time>
-    </Item>
-    <Item>
       <Source>Images\pballss.png</Source>
       <Name>Images\pballss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
-      <Time>2015-02-03T13:01:28.5977649-06:00</Time>
+      <Time>2015-02-05T14:05:27.4718672-06:00</Time>
     </Item>
     <Item>
       <Source>Images\Pikachu2.png</Source>
@@ -29,33 +20,6 @@
       <Time>2015-02-03T13:01:28.5967642-06:00</Time>
     </Item>
     <Item>
-      <Source>Images\squirtle.jpg</Source>
-      <Name>Images\squirtle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
-      <Time>2015-02-03T13:01:28.5987657-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\swish.wav</Source>
-      <Name>Audio\swish</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-02-01T14:36:39.9332075-06:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\crash.wav</Source>
-      <Name>Audio\crash</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-02-01T14:36:39.9312065-06:00</Time>
-    </Item>
-    <Item>
       <Source>myFont.spritefont</Source>
       <Name>myFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -63,6 +27,69 @@
       <Options>None</Options>
       <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
       <Time>2015-02-01T14:36:39.9695864-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\squirtle.png</Source>
+      <Name>Images\squirtle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
+      <Time>2015-02-05T14:05:27.4728679-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\bg.png</Source>
+      <Name>Images\bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb</Output>
+      <Time>2015-02-05T14:05:27.4708665-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Squirtle.wma</Source>
+      <Name>Audio\Squirtle</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb</Output>
+      <Time>2015-02-05T14:05:27.4676985-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Pikachu.wma</Source>
+      <Name>Audio\Pikachu</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
+      <Time>2015-02-05T14:05:27.4656959-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\And there goes the battle.mp3</Source>
+      <Name>Audio\And there goes the battle</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
+      <Time>2015-02-05T14:05:27.4643056-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\Woops that missed.mp3</Source>
+      <Name>Audio\Woops that missed</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
+      <Time>2015-02-05T14:05:27.4698642-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\WOW.mp3</Source>
+      <Name>Audio\WOW</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
+      <Time>2015-02-05T14:05:27.4686993-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -55,12 +55,9 @@ C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\obj\x86\Debug\Micro
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb
-C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb
-C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
-C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
@@ -84,3 +81,9 @@ C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\D
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb
 C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb

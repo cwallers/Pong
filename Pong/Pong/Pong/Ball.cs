@@ -31,6 +31,8 @@ namespace Pong
         // Ball location
         Vector2 ballPosition;
 
+        Vector3 ballPosition3;
+
         // Ball's motion
         Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
 
@@ -104,12 +106,22 @@ namespace Pong
         /// <summary>
         /// Gets the bounding rectangle of the ball.
         /// </summary>
-        public Rectangle Boundary
+        public Rectangle BoundaryRectangle
         {
             get
             {
                 return new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
                     64, 64);
+            }
+        }
+        /// <summary>
+        /// Gets the bounding sphere of the ball.
+        /// </summary>
+        public BoundingSphere Boundary
+        {
+            get
+            {
+                return new BoundingSphere(ballPosition3, 32);
             }
         }
         #endregion

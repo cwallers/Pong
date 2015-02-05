@@ -274,7 +274,7 @@ namespace Pong
                     }
 
                     // Collision?  Check rectangle intersection between ball and hand
-                    if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
+                    if (ball.BoundaryRectangle.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
                     {
                         playerSoundEffect.Play();
 
@@ -293,7 +293,7 @@ namespace Pong
                         ball.SpeedUp();
                     }
 
-                    if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
+                    if (ball.BoundaryRectangle.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
                     {
                         computerSoundEffect.Play();
 
