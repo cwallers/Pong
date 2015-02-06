@@ -65,7 +65,7 @@ namespace Pong
             set { paddlePosition.Y = value; }
         }
 
-        public int Width
+        public float Width
         {
             get { return paddleSprite.Width; }
         }
@@ -73,7 +73,7 @@ namespace Pong
         /// <summary>
         /// Gets the height of the paddle's sprite.
         /// </summary>
-        public int Height
+        public float Height
         {
             get { return paddleSprite.Height; }
         }
@@ -81,12 +81,19 @@ namespace Pong
         /// <summary>
         /// Gets the bounding sphere of the paddle.
         /// </summary>
-        
+
+        public Rectangle BoundaryRectangle
+        {
+            get
+            {
+                return new Rectangle((int)(paddlePosition.X - (Width / 2)), (int)(paddlePosition.Y - (Height/2)), (int)Width,(int)Height);
+            }
+        }
         public BoundingSphere Boundary
         {
             get
             {
-                return new BoundingSphere(paddlePosition, paddleSprite.Height / 2);
+                return new BoundingSphere(paddlePosition, (float)Height / 2);
             }
         }
         #endregion

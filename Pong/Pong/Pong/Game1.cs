@@ -294,8 +294,7 @@ namespace Pong
                         
                         ball.SpeedUp();
                     }
-
-                    if (ball.Boundary.Intersects(paddleComputer.Boundary))
+                    else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)
                     {
                         computerSoundEffect.Play();
                         Vector2 A = new Vector2(ball.X, ball.Y);
