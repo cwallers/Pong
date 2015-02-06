@@ -25,10 +25,7 @@ namespace Pong
         protected Texture2D paddleSprite;
 
         // Paddle location
-        protected Vector2 paddlePosition;
-
-        //Paddle velocity
-        protected float velocity = 0;
+        protected Vector3 paddlePosition;
 
         //Default paddle speed
         protected const float DEFAULT_Y_SPEED = 500;
@@ -82,29 +79,16 @@ namespace Pong
         }
 
         /// <summary>
-        /// Gets the bounding rectangle of the paddle.
+        /// Gets the bounding sphere of the paddle.
         /// </summary>
-        public Rectangle Boundary
+        
+        public BoundingSphere Boundary
         {
             get
             {
-                return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height);
+                return new BoundingSphere(paddlePosition, paddleSprite.Height / 2);
             }
         }
-
-        /// <summary>
-        /// Gets the paddle's last recorded velocity.
-        /// </summary>
-        public float Velocity
-        {
-            get
-            {
-                return velocity;
-            }
-        }
-
-
         #endregion
 
         public Paddle(Game game)
@@ -129,9 +113,12 @@ namespace Pong
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
-        {           
+        {
+            Vector2 paddlePosition2 = new Vector2();
+            paddlePosition2.X = X;
+            paddlePosition2.Y = Y;
             spriteBatch.Begin();
-            spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
+            spriteBatch.Draw(paddleSprite, paddlePosition2, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -192,8 +179,6 @@ namespace Pong
                 }
 
                 Y += move;
-
-                velocity = yBeforeMove - Y;
 
                 if (Y < 0 || Y + Height > GraphicsDevice.Viewport.Height)
                 {
@@ -276,6 +261,7 @@ namespace Pong
             float move = moveDistance;
             float edge = GraphicsDevice.Viewport.Height - Height;
 
+
             if (paddleCenterY > ballCenterY)
             {
                 move *= -1;
@@ -293,7 +279,6 @@ namespace Pong
             {
                 Y = edge;
             }
-
             base.Update(gameTime);
         }
     }

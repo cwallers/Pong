@@ -201,6 +201,8 @@ namespace Pong
             else if (!Keyboard.GetState().IsKeyDown(Keys.Escape) && creditScreen)
             {
                 ball.Enabled = false;
+                paddleComputer.Enabled = false;
+                paddleHuman.Enabled = false;
             }
             else
             {
@@ -230,8 +232,11 @@ namespace Pong
                     // Wait until a second has passed before animating ball 
                     delayTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     if (delayTimer > 1)
+                    {
                         ball.Enabled = true;
-
+                        paddleHuman.Enabled = true;
+                        paddleComputer.Enabled = true;
+                    }
                     int maxX = GraphicsDevice.Viewport.Width - ball.Width;
                     int maxY = GraphicsDevice.Viewport.Height - ball.Height;
 
@@ -240,13 +245,13 @@ namespace Pong
                     // a back-and-forth bouncing logic error.
                     if (ball.Y > maxY)
                     {
-                        ball.ChangeVertDirection();
+                        ball.SpeedY *= -1;
                         ball.Y = maxY;
                     }
 
-                    if (ball.Y < 0)
+                    else if (ball.Y < 0)
                     {
-                        ball.ChangeVertDirection();
+                        ball.SpeedY *= -1;
                         ball.Y = 0;
                     }
                     else if (ball.X > maxX)
@@ -274,41 +279,33 @@ namespace Pong
                     }
 
                     // Collision?  Check rectangle intersection between ball and hand
-                    if (ball.BoundaryRectangle.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)      //changed [ball.SpeedY >] to [ball.SpeedX <]
+                    if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)
                     {
                         playerSoundEffect.Play();
 
-                        // If hitting the side of the paddle the ball is coming toward, 
-                        // switch the ball's horz direction
-                        float ballMiddle = (ball.X + ball.Width) / 2;
-                        float paddleMiddle = (paddleHuman.X + paddleHuman.Width) / 2;
-                        if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
-                            (ballMiddle > paddleMiddle && ball.SpeedX < 0))
-                        {
-                            ball.ChangeHorzDirection();
-                        }
-
-                        // Go back up the screen and speed up
-                        //ball.ChangeVertDirection();
+                        Vector2 A = new Vector2(ball.X, ball.Y);
+                        Vector2 B = new Vector2(paddleHuman.X, paddleHuman.Y);
+                        Vector2 C = A - B;
+                        C.Normalize();
+                        Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                        Vector2 E = Vector2.Reflect(D, C);
+                        ball.SpeedX = E.X;
+                        ball.SpeedY = E.Y;
+                        
                         ball.SpeedUp();
                     }
 
-                    if (ball.BoundaryRectangle.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)      //changed [ball.SpeedY <] to [ball.SpeedX >]
+                    if (ball.Boundary.Intersects(paddleComputer.Boundary))
                     {
                         computerSoundEffect.Play();
-
-                        // If hitting the side of the paddle the ball is coming toward, 
-                        // switch the ball's horz direction
-                        float ballMiddle = (ball.X + ball.Width) / 2;
-                        float paddleMiddle = (paddleComputer.X + paddleComputer.Width) / 2;
-                        if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
-                            (ballMiddle > paddleMiddle && ball.SpeedX < 0))
-                        {
-                            ball.ChangeHorzDirection();
-                        }
-
-                        // Go back up the screen and speed up
-                        //ball.ChangeVertDirection();
+                        Vector2 A = new Vector2(ball.X, ball.Y);
+                        Vector2 B = new Vector2(paddleComputer.X, paddleComputer.Y);
+                        Vector2 C = A - B;
+                        C.Normalize();
+                        Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                        Vector2.Reflect(D, C);
+                        ball.SpeedX = -D.X;
+                        ball.SpeedY = D.Y;
                         ball.SpeedUp();
                     }
                 }

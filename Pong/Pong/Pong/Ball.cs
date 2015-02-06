@@ -22,19 +22,16 @@ namespace Pong
         private ContentManager contentManager;
 
         // Default speed of ball
-        private const float DEFAULT_X_SPEED = 150;
-        private const float DEFAULT_Y_SPEED = 150;
+        private const float DEFAULT_SPEED = 150;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
 
         // Ball location
-        Vector2 ballPosition;
-
-        Vector3 ballPosition3;
+        Vector3 ballPosition;
 
         // Ball's motion
-        Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
+        Vector2 ballSpeed = new Vector2(DEFAULT_SPEED, DEFAULT_SPEED);
 
         // Texture stuff
         Texture2D texture;
@@ -121,7 +118,7 @@ namespace Pong
         {
             get
             {
-                return new BoundingSphere(ballPosition3, 32);
+                return new BoundingSphere(ballPosition, 32);
             }
         }
         #endregion
@@ -137,22 +134,26 @@ namespace Pong
         /// </summary>
         public void Reset()
         {
-            ballSpeed.X = DEFAULT_X_SPEED;
-            ballSpeed.Y = DEFAULT_Y_SPEED;
-
             ballPosition.Y = (GraphicsDevice.Viewport.Height - Height)/2;
             ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
 
             Random rNumber = new Random();
-            int direction = new int();
-            // random function to choose direction
-            direction = rNumber.Next(0, 2);
 
-            if (direction == 0)
+            ballSpeed.X = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
+
+            ballSpeed.Y = (DEFAULT_SPEED * 2) - ballSpeed.X;
+
+            int direction = rNumber.Next(1, 4);
+
+            if (direction % 2 == 0)
             {
                 ballSpeed.X *= -1;
+            }
+            if (direction < 3)
+            {
                 ballSpeed.Y *= -1;
             }
+            
         }
 
         /// <summary>
@@ -169,22 +170,6 @@ namespace Pong
                 ballSpeed.X -= INCREASE_SPEED;
             else
                 ballSpeed.X += INCREASE_SPEED;
-        }
-
-        /// <summary>
-        /// Invert the ball's horizontal direction
-        /// </summary>
-        public void ChangeHorzDirection()
-        {
-            ballSpeed.X *= -1;
-        }
-
-        /// <summary>
-        /// Invert the ball's vertical direction
-        /// </summary>
-        public void ChangeVertDirection()
-        {
-            ballSpeed.Y *= -1;
         }
 
         /// <summary>
@@ -216,7 +201,8 @@ namespace Pong
         public override void Update(GameTime gameTime)
         {
             // Move the sprite by speed, scaled by elapsed time.
-            ballPosition += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            X += ballSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Y += ballSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds; if (timeSinceLastFrame > millisecondsPerFrame)
             {
@@ -244,7 +230,11 @@ namespace Pong
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-            spriteBatch.Draw(texture, ballPosition,
+            Vector2 ballPosition2 = new Vector2();
+            ballPosition2.X = X;
+            ballPosition2.Y = Y;
+
+            spriteBatch.Draw(texture, ballPosition2,
                new Rectangle(currentFrame.X * frameSize.X,
                    currentFrame.Y * frameSize.Y,
                    frameSize.X,
