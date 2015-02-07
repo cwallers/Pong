@@ -15,23 +15,15 @@ namespace Pong
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Ball : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Ball : Physical
     {
         #region Private Members
-        private SpriteBatch spriteBatch;
-        private ContentManager contentManager;
 
         // Default speed of ball
         private const float DEFAULT_SPEED = 150;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
-
-        // Ball location
-        private Vector3 ballPosition;
-
-        // Ball's motion
-        private Vector2 ballSpeed = new Vector2(DEFAULT_SPEED, DEFAULT_SPEED);
 
         // Collision limiter
         private bool isColliding;
@@ -43,50 +35,14 @@ namespace Pong
         Point sheetSize = new Point(12, 0);
 
         // Framerate stuff
-        int timeSinceLastFrame = 0;
-        int millisecondsPerFrame = 50;
+        protected int timeSinceLastFrame = 0;
+        protected int millisecondsPerFrame = 50;
 
         //file content handles
         protected String spriteImage = @"Content\Images\pballss";
         #endregion
        
         #region Properties
-        /// <summary>
-        /// Gets or sets the ball's horizontal speed.
-        /// </summary>
-        public float SpeedX
-        {
-            get { return ballSpeed.X; }
-            set { ballSpeed.X = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the ball's vertical speed.
-        /// </summary>
-        public float SpeedY
-        {
-            get { return ballSpeed.Y; }
-            set { ballSpeed.Y = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the X position of the ball.
-        /// </summary>
-        public float X
-        {
-            get { return ballPosition.X; }
-            set { ballPosition.X = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the Y position of the ball.
-        /// </summary>
-        public float Y
-        {
-            get { return ballPosition.Y; }
-            set { ballPosition.Y = value; }
-        }
-
         /// <summary>
         /// Gets the width of the ball's sprite.
         /// </summary>
@@ -102,29 +58,9 @@ namespace Pong
         {
             get { return frameSize.Y; }
         }
-
         /// <summary>
-        /// Gets the bounding rectangle of the ball.
+        /// Is it colliding?  I DONT KNOW LETS FIND OUT
         /// </summary>
-        public Rectangle BoundaryRectangle
-        {
-            get
-            {
-                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
-                    64, 64);
-            }
-        }
-        /// <summary>
-        /// Gets the bounding sphere of the ball.
-        /// </summary>
-        public BoundingSphere Boundary
-        {
-            get
-            {
-                return new BoundingSphere(ballPosition, 32);
-            }
-        }
-
         public bool IsColliding
         {
             get
@@ -151,24 +87,24 @@ namespace Pong
         {
             isColliding = false;
 
-            ballPosition.Y = (GraphicsDevice.Viewport.Height - Height)/2;
-            ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
+            PositionY = (GraphicsDevice.Viewport.Height - Height) / 2;
+            PositionX = (GraphicsDevice.Viewport.Width - Width) / 2;
 
             Random rNumber = new Random();
 
-            ballSpeed.X = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
+            VelocityX = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
 
-            ballSpeed.Y = (DEFAULT_SPEED * 2) - ballSpeed.X;
+            VelocityY = (DEFAULT_SPEED * 2) - VelocityX;
 
             int direction = rNumber.Next(1, 4);
 
             if (direction % 2 == 0)
             {
-                ballSpeed.X *= -1;
+                VelocityX *= -1;
             }
             if (direction < 3)
             {
-                ballSpeed.Y *= -1;
+                VelocityY *= -1;
             }
             
         }
@@ -178,15 +114,15 @@ namespace Pong
         /// </summary>
         public void SpeedUp()
         {
-            if (ballSpeed.Y < 0)
-                ballSpeed.Y -= INCREASE_SPEED;
+            if (VelocityY < 0)
+                VelocityY -= INCREASE_SPEED;
             else
-                ballSpeed.Y += INCREASE_SPEED;
+                VelocityY += INCREASE_SPEED;
 
-            if (ballSpeed.X < 0)
-                ballSpeed.X -= INCREASE_SPEED;
+            if (VelocityX < 0)
+                VelocityX -= INCREASE_SPEED;
             else
-                ballSpeed.X += INCREASE_SPEED;
+                VelocityX += INCREASE_SPEED;
         }
 
         /// <summary>
@@ -195,8 +131,30 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
-            ballPosition.X = 360;
-            ballPosition.Y = 200;
+            PositionX = 360;
+            PositionY = 200;
+
+            SizeX = Width;
+            SizeY = Height;
+            SizeR = Height / 2;
+
+            Random rNumber = new Random();
+
+            VelocityX = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
+
+            VelocityY = (DEFAULT_SPEED * 2) - VelocityX;
+
+            int direction = rNumber.Next(1, 4);
+
+            if (direction % 2 == 0)
+            {
+                VelocityX *= -1;
+            }
+            if (direction < 3)
+            {
+                VelocityY *= -1;
+            }
+
 
             base.Initialize();
         }
@@ -217,9 +175,10 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            #region Sprite Image Movement
             // Move the sprite by speed, scaled by elapsed time.
-            X += ballSpeed.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Y += ballSpeed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            PositionX += VelocityX * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            PositionY += VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds; if (timeSinceLastFrame > millisecondsPerFrame)
             {
@@ -233,6 +192,12 @@ namespace Pong
                         currentFrame.Y = 0;
                 }
             }
+            #endregion
+
+            #region Sprite Physical Movement
+
+
+            #endregion 
 
             base.Update(gameTime);
         }
@@ -247,11 +212,7 @@ namespace Pong
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
 
-            Vector2 ballPosition2 = new Vector2();
-            ballPosition2.X = X;
-            ballPosition2.Y = Y;
-
-            spriteBatch.Draw(texture, ballPosition2,
+            spriteBatch.Draw(texture, new Vector2(PositionX,PositionY),
                new Rectangle(currentFrame.X * frameSize.X,
                    currentFrame.Y * frameSize.Y,
                    frameSize.X,

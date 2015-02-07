@@ -96,9 +96,9 @@ namespace Pong
         void Window_ClientSizeChanged(object sender, EventArgs e)
         {
             // Move paddle back onto screen if it's off
-            paddleHuman.Y = GraphicsDevice.Viewport.Height - paddleHuman.Height;
-            if (paddleHuman.X + paddleHuman.Width > GraphicsDevice.Viewport.Width)
-                paddleHuman.X = GraphicsDevice.Viewport.Width - paddleHuman.Width;
+            paddleHuman.PositionY = GraphicsDevice.Viewport.Height - paddleHuman.SizeY;
+            if (paddleHuman.PositionX + paddleHuman.SizeX > GraphicsDevice.Viewport.Width)
+                paddleHuman.PositionX = GraphicsDevice.Viewport.Width - paddleHuman.SizeX;
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Pong
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
-                paddleComputer.X = GraphicsDevice.Viewport.Width - paddleComputer.Width - 2;
+                paddleComputer.PositionX = GraphicsDevice.Viewport.Width - paddleComputer.SizeX - 2;
 
                 mainFrame.Height = GraphicsDevice.Viewport.Height;
                 mainFrame.Width = GraphicsDevice.Viewport.Width;
@@ -237,24 +237,24 @@ namespace Pong
                         paddleHuman.Enabled = true;
                         paddleComputer.Enabled = true;
                     }
-                    int maxX = GraphicsDevice.Viewport.Width - ball.Width;
-                    int maxY = GraphicsDevice.Viewport.Height - ball.Height;
+                    int maxX = GraphicsDevice.Viewport.Width - (int)ball.SizeX;
+                    int maxY = GraphicsDevice.Viewport.Height - (int)ball.SizeY;
 
                     // Check for bounce. Make sure to place ball back inside the screen
                     // or it could remain outside the screen on the next iteration and cause
                     // a back-and-forth bouncing logic error.
-                    if (ball.Y > maxY)
+                    if (ball.PositionY > maxY)
                     {
-                        ball.SpeedY *= -1;
-                        ball.Y = maxY;
+                        ball.VelocityY *= -1;
+                        ball.PositionY = maxY;
                     }
 
-                    else if (ball.Y < 0)
+                    else if (ball.PositionY < 0)
                     {
-                        ball.SpeedY *= -1;
-                        ball.Y = 0;
+                        ball.VelocityY *= -1;
+                        ball.PositionY = 0;
                     }
-                    else if (ball.X > maxX)
+                    else if (ball.PositionX > maxX)
                     {
                         // Game over - reset ball
                         playerPointSoundEffect.Play();
@@ -266,7 +266,7 @@ namespace Pong
                         ball.Enabled = false;
                     }
 
-                    else if (ball.X < 0)
+                    else if (ball.PositionX < 0)
                     {
                         // Game over - reset ball
                         computerPointSoundEffect.Play();
@@ -282,42 +282,42 @@ namespace Pong
 
                     if (ball.IsColliding)
                     {
-                        if (!((ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)||(ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)))
+                        if (!((ball.Boundary.Intersects(paddleHuman.Boundary) && ball.VelocityX < 0)||(ball.Boundary.Intersects(paddleComputer.Boundary) && ball.VelocityX > 0)))
                         {
                             ball.IsColliding = false;
                         }
                     }
                     else
                     {
-                        if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)
+                        if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.VelocityX < 0)
                         {
                             ball.IsColliding = true;
                             playerSoundEffect.Play();
 
-                            Vector2 A = new Vector2(ball.X, ball.Y);
-                            Vector2 B = new Vector2(paddleHuman.X, paddleHuman.Y);
+                            Vector2 A = new Vector2(ball.PositionX, ball.PositionY);
+                            Vector2 B = new Vector2(paddleHuman.PositionX, paddleHuman.PositionY);
                             Vector2 C = A - B;
                             C.Normalize();
-                            Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                            Vector2 D = new Vector2(ball.VelocityX, ball.VelocityY);
                             Vector2 E = Vector2.Reflect(D, C);
-                            ball.SpeedX = E.X;
-                            ball.SpeedY = E.Y;
+                            ball.VelocityX = E.X;
+                            ball.VelocityY = E.Y;
 
                             ball.SpeedUp();
                         }
-                        else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)
+                        else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.VelocityX > 0)
                         {
                             ball.IsColliding = true;
                             computerSoundEffect.Play();
 
-                            Vector2 A = new Vector2(ball.X, ball.Y);
-                            Vector2 B = new Vector2(paddleComputer.X, paddleComputer.Y);
+                            Vector2 A = new Vector2(ball.PositionX, ball.PositionY);
+                            Vector2 B = new Vector2(paddleComputer.PositionX, paddleComputer.PositionY);
                             Vector2 C = A - B;
                             C.Normalize();
-                            Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                            Vector2 D = new Vector2(ball.VelocityX, ball.VelocityY);
                             Vector2.Reflect(D, C);
-                            ball.SpeedX = -D.X;
-                            ball.SpeedY = D.Y;
+                            ball.VelocityX = -D.X;
+                            ball.VelocityY = D.Y;
                             ball.SpeedUp();
                         }
                         else
@@ -356,12 +356,12 @@ namespace Pong
             spriteBatch.DrawString(font, playerScore.ToString(), new Vector2(20, 20), Color.Black);
             spriteBatch.DrawString(font, computerScore.ToString(), new Vector2(GraphicsDevice.Viewport.Width - 30, 20), Color.Black);
 
-            if (playerScore == WIN_SCORE && !creditScreen)
+            if (playerScore == WIN_SCORE)
             {
                 spriteBatch.DrawString(font, winnerMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + winnerMsg.Length
                     , GraphicsDevice.Viewport.Height / 2), Color.Black);
             }
-            else if (computerScore == WIN_SCORE &&!creditScreen)
+            else if (computerScore == WIN_SCORE)
             {
                 spriteBatch.DrawString(font, loserMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + loserMsg.Length
                     , GraphicsDevice.Viewport.Height / 2), Color.Black);

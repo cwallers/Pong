@@ -1,0 +1,16 @@
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\obj\x86\Debug\PongWithPhysics.csprojResolveAssemblyReference.cache
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
+C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb

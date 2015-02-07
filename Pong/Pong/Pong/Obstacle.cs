@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Pong
 {
-    public class Obstacle : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Obstacle : Physical
     {
 
         #region Private Members
