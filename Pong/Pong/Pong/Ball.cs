@@ -28,10 +28,13 @@ namespace Pong
         private const float INCREASE_SPEED = 50;
 
         // Ball location
-        Vector3 ballPosition;
+        private Vector3 ballPosition;
 
         // Ball's motion
-        Vector2 ballSpeed = new Vector2(DEFAULT_SPEED, DEFAULT_SPEED);
+        private Vector2 ballSpeed = new Vector2(DEFAULT_SPEED, DEFAULT_SPEED);
+
+        // Collision limiter
+        private bool isColliding;
 
         // Texture stuff
         Texture2D texture;
@@ -121,6 +124,18 @@ namespace Pong
                 return new BoundingSphere(ballPosition, 32);
             }
         }
+
+        public bool IsColliding
+        {
+            get
+            {
+                return isColliding;
+            }
+            set
+            {
+                isColliding = value;
+            }
+        }
         #endregion
 
         public Ball(Game game)
@@ -134,6 +149,8 @@ namespace Pong
         /// </summary>
         public void Reset()
         {
+            isColliding = false;
+
             ballPosition.Y = (GraphicsDevice.Viewport.Height - Height)/2;
             ballPosition.X = (GraphicsDevice.Viewport.Width - Width) / 2;
 

@@ -279,33 +279,51 @@ namespace Pong
                     }
 
                     // Collision?  Check rectangle intersection between ball and hand
-                    if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)
-                    {
-                        playerSoundEffect.Play();
 
-                        Vector2 A = new Vector2(ball.X, ball.Y);
-                        Vector2 B = new Vector2(paddleHuman.X, paddleHuman.Y);
-                        Vector2 C = A - B;
-                        C.Normalize();
-                        Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
-                        Vector2 E = Vector2.Reflect(D, C);
-                        ball.SpeedX = E.X;
-                        ball.SpeedY = E.Y;
-                        
-                        ball.SpeedUp();
-                    }
-                    else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)
+                    if (ball.IsColliding)
                     {
-                        computerSoundEffect.Play();
-                        Vector2 A = new Vector2(ball.X, ball.Y);
-                        Vector2 B = new Vector2(paddleComputer.X, paddleComputer.Y);
-                        Vector2 C = A - B;
-                        C.Normalize();
-                        Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
-                        Vector2.Reflect(D, C);
-                        ball.SpeedX = -D.X;
-                        ball.SpeedY = D.Y;
-                        ball.SpeedUp();
+                        if (!((ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)||(ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)))
+                        {
+                            ball.IsColliding = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.SpeedX < 0)
+                        {
+                            ball.IsColliding = true;
+                            playerSoundEffect.Play();
+
+                            Vector2 A = new Vector2(ball.X, ball.Y);
+                            Vector2 B = new Vector2(paddleHuman.X, paddleHuman.Y);
+                            Vector2 C = A - B;
+                            C.Normalize();
+                            Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                            Vector2 E = Vector2.Reflect(D, C);
+                            ball.SpeedX = E.X;
+                            ball.SpeedY = E.Y;
+
+                            ball.SpeedUp();
+                        }
+                        else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.SpeedX > 0)
+                        {
+                            ball.IsColliding = true;
+                            computerSoundEffect.Play();
+
+                            Vector2 A = new Vector2(ball.X, ball.Y);
+                            Vector2 B = new Vector2(paddleComputer.X, paddleComputer.Y);
+                            Vector2 C = A - B;
+                            C.Normalize();
+                            Vector2 D = new Vector2(ball.SpeedX, ball.SpeedY);
+                            Vector2.Reflect(D, C);
+                            ball.SpeedX = -D.X;
+                            ball.SpeedY = D.Y;
+                            ball.SpeedUp();
+                        }
+                        else
+                        {
+                            ball.IsColliding = false;
+                        }
                     }
                 }
             }
@@ -338,12 +356,12 @@ namespace Pong
             spriteBatch.DrawString(font, playerScore.ToString(), new Vector2(20, 20), Color.Black);
             spriteBatch.DrawString(font, computerScore.ToString(), new Vector2(GraphicsDevice.Viewport.Width - 30, 20), Color.Black);
 
-            if (playerScore == WIN_SCORE)
+            if (playerScore == WIN_SCORE && !creditScreen)
             {
                 spriteBatch.DrawString(font, winnerMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + winnerMsg.Length
                     , GraphicsDevice.Viewport.Height / 2), Color.Black);
             }
-            else if (computerScore == WIN_SCORE)
+            else if (computerScore == WIN_SCORE &&!creditScreen)
             {
                 spriteBatch.DrawString(font, loserMsg, new Vector2(GraphicsDevice.Viewport.Width / 2 + loserMsg.Length
                     , GraphicsDevice.Viewport.Height / 2), Color.Black);
