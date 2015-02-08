@@ -30,3 +30,5 @@ C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\PongWithPhy
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\obstacle.xnb
+C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\PokemonPause.xnb

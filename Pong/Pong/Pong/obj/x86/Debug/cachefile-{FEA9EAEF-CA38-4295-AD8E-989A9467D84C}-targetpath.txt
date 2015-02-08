@@ -8,5 +8,5 @@ Content\Audio\Pikachu.xnb
 Content\Audio\And there goes the battle.xnb
 Content\Audio\Woops that missed.xnb
 Content\Audio\WOW.xnb
-Content\Images\PokemonPause.xnb
 Content\Images\obstacle.xnb
+Content\Images\PokemonPause.xnb

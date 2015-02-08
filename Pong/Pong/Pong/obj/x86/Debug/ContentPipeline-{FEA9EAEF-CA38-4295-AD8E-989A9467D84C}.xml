@@ -8,7 +8,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
-      <Time>2015-02-01T14:36:39.9695864-06:00</Time>
+      <Time>2015-02-08T15:55:30.6430698-06:00</Time>
     </Item>
     <Item>
       <Source>Images\pballss.png</Source>
@@ -90,6 +90,24 @@
       <Options>None</Options>
       <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
       <Time>2015-02-05T14:05:27.4686993-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\obstacle.png</Source>
+      <Name>Images\obstacle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\obstacle.xnb</Output>
+      <Time>2015-02-08T15:52:50.1516054-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\PokemonPause.png</Source>
+      <Name>Images\PokemonPause</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\PokemonPause.xnb</Output>
+      <Time>2015-02-08T15:52:50.1496024-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

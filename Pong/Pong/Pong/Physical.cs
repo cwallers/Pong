@@ -269,13 +269,13 @@ namespace Pong
             VelocityX = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
             VelocityY = (DEFAULT_SPEED * 2) - VelocityX;
 
-            int direction = rNumber.Next(1, 4);
+            int direction = rNumber.Next(1, 5);
 
-            if (direction % 2 == 0)
+            if (direction == 1 || direction == 2)
             {
                 VelocityX *= -1;
             }
-            if (direction < 3)
+            if (direction == 2 || direction == 4)
             {
                 VelocityY *= -1;
             }
