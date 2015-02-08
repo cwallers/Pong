@@ -36,6 +36,7 @@ namespace Pong
         #endregion
 
         #region Properties
+
         #endregion
 
         public Paddle(Game game)
@@ -67,6 +68,19 @@ namespace Pong
 
             base.Draw(gameTime);
         }
+
+        public override void checkCollision(Physical opponent)
+        {
+            if (!(this == opponent) && Boundary.Intersects(opponent.Boundary))
+            {
+                VelocityX = 0;
+                float originalVelocityY = VelocityY;
+                VelocityX = -(opponent.VelocityX);
+                resolveCollision(opponent);
+                VelocityX = 0;
+                VelocityY = originalVelocityY;
+            }
+        }
     }
 
     public class PaddleHuman : Paddle 
@@ -93,10 +107,9 @@ namespace Pong
                 isMouseControl = !isMouseControl; // reverse the control keys
             }
 
-            // Scale the movement based on time
-            float moveDistance = DEFAULT_Y_SPEED * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             // Move paddle, but don't allow movement off the screen
+            
+            VelocityY = DEFAULT_Y_SPEED;
             
             KeyboardState newKeyState = Keyboard.GetState();
             mouseStatePrevious = mouseStateCurrent;
@@ -106,38 +119,43 @@ namespace Pong
 
             if (isMouseControl)
             {
-                float move = moveDistance;
                 float edge = GraphicsDevice.Viewport.Height - SizeY;
 
-                if (PositionY > mouseStateCurrent.Y)
+                if (PositionCenteredY > mouseStateCurrent.Y)
                 {
-                    move *= -1;
+                    VelocityY *= -1;
                     edge = 0;
                 }
 
-                if (Math.Abs(PositionY - mouseStateCurrent.Y) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
+                if (Math.Abs(PositionCenteredY - mouseStateCurrent.Y) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
                 {
-                    move *= (Math.Abs(PositionY - mouseStateCurrent.Y) / ((ball.SizeY / 2) + (SizeY / 2)));
+                    VelocityY *= (Math.Abs(PositionCenteredY - mouseStateCurrent.Y) / ((ball.SizeY / 2) + (SizeY / 2)));
                 }
 
-                PositionY += move;
+                PositionY += VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 if (PositionY < 0 || PositionY + SizeY > GraphicsDevice.Viewport.Height)
                 {
                     PositionY = edge;
+                    VelocityY = 0;
                 }
 
             }
             else
             {
+
                 if (newKeyState.IsKeyDown(Keys.Down) && PositionY + SizeY
-                    + moveDistance <= GraphicsDevice.Viewport.Height)
+                    + (VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds) <= GraphicsDevice.Viewport.Height)
                 {
-                    PositionY += moveDistance;
+                    PositionY += (VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds);
                 }
-                else if (newKeyState.IsKeyDown(Keys.Up) && PositionY - moveDistance >= 0)
+                else if (newKeyState.IsKeyDown(Keys.Up) && PositionY - (VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds) >= 0)
                 {
-                    PositionY -= moveDistance;
+                    PositionY -= (VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds);
+                }
+                else
+                {
+                    VelocityY = 0;
                 }
             }
 
@@ -154,16 +172,20 @@ namespace Pong
             base.Initialize();
 
             // Make sure base.Initialize() is called before this or handSprite will be null
+
+            Mass = 20;
+            
             SizeX = (float)paddleSprite.Width;
             SizeY = (float)paddleSprite.Height;
             SizeR = (float)(paddleSprite.Height / 2);
             
             PositionX = 2;
             PositionY = (GraphicsDevice.Viewport.Height - SizeY) / 2;
+            PositionZ = 0;
 
-            VelocityY = DEFAULT_Y_SPEED;
-
-            
+            VelocityX = 0;
+            VelocityY = 0;
+            VelocityZ = 0;
         }
     }
 
@@ -186,6 +208,9 @@ namespace Pong
             base.Initialize();
 
             // Make sure base.Initialize() is called before this or handSprite will be null
+
+            Mass = 20;
+
             SizeX = (float)paddleSprite.Width;
             SizeY = (float)paddleSprite.Height;
             SizeR = (float)(paddleSprite.Height / 2);
@@ -193,6 +218,9 @@ namespace Pong
             // Make sure base.Initialize() is called before this or handSprite will be null
             PositionX = GraphicsDevice.Viewport.Width - SizeX -  2;
             PositionY = (GraphicsDevice.Viewport.Height - SizeY) / 2;
+
+            VelocityX = 0;
+            VelocityY = 0;
 
             
         }
@@ -202,33 +230,32 @@ namespace Pong
             Ball ball = Game.Components[0] as Ball;
 
             // Scale the movement based on time
-            float moveDistance = DEFAULT_Y_SPEED * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            VelocityY = DEFAULT_Y_SPEED;
 
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
 
-            float move = moveDistance;
             float edge = GraphicsDevice.Viewport.Height - SizeY;
 
+                if (PositionCenteredY > ball.PositionCenteredY)
+                {
+                    VelocityY *= -1;
+                    edge = 0;
+                }
 
-            if (PositionY > ball.PositionY)
-            {
-                move *= -1;
-                edge = 0;
-            }
+                if (Math.Abs(PositionCenteredY - ball.PositionCenteredY) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
+                {
+                    VelocityY *= (Math.Abs(PositionCenteredY - ball.PositionCenteredY) / ((ball.SizeY / 2) + (SizeY / 2)));
+                }
 
-            if (Math.Abs(PositionY - ball.PositionY) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
-            {
-                move *= (Math.Abs(PositionY - ball.PositionY) / ((ball.SizeY / 2) + (SizeY / 2)));
-            }
+                PositionY += VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            PositionY += move;
-
-            if (PositionY < 0 || PositionY + SizeY > GraphicsDevice.Viewport.Height)
-            {
-                PositionY = edge;
-            }
+                if (PositionY < 0 || PositionY + SizeY > GraphicsDevice.Viewport.Height)
+                {
+                    PositionY = edge;
+                    VelocityY = 0;
+                }
             base.Update(gameTime);
         }
     }

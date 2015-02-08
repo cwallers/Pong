@@ -1,6 +1,6 @@
 /*
  * Basketball Pong
- * by Catherine Wallers, Harding University
+ * by Catherine Wallers and Nathan Roberts, Harding University
  * Spring 2015
  * Base code by Frank McCown, Harding University
  * 
@@ -33,10 +33,12 @@ namespace Pong
         private Ball ball;
         private PaddleHuman paddleHuman;
         private PaddleComputer paddleComputer;
+        private Obstacle obstacle;
         protected SpriteBatch spriteBatch;
         private SpriteFont font;
         protected int playerScore = 0;
         protected int computerScore = 0;
+        protected List<Physical> listOfPhysical;
 
         // Used to delay between rounds 
         private float delayTimer = 0;
@@ -84,10 +86,19 @@ namespace Pong
             ball = new Ball(this);
             paddleHuman = new PaddleHuman(this);
             paddleComputer = new PaddleComputer(this);
+            obstacle = new Obstacle(this);
+
+            listOfPhysical = new List<Physical>();
+
+            listOfPhysical.Add(ball);
+            listOfPhysical.Add(paddleHuman);
+            listOfPhysical.Add(paddleComputer);
+            listOfPhysical.Add(obstacle);
 
             Components.Add(ball);
             Components.Add(paddleHuman);
             Components.Add(paddleComputer);
+            Components.Add(obstacle);
 
             // Call Window_ClientSizeChanged when screen size is changed
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
@@ -131,6 +142,7 @@ namespace Pong
 
             // Don't allow ball to move just yet
             ball.Enabled = false;
+            obstacle.Enabled = false;
             isPlayingWinSoundEffect = false;
             creditScreen = false;
 
@@ -177,6 +189,12 @@ namespace Pong
             // Get the keyboard state when updating
             KeyboardState newKeyState = Keyboard.GetState();
 
+            // Reset the ball manually
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && !oldKeyState.IsKeyDown(Keys.R))
+            {
+                ball.Reset();
+            }
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Back))
@@ -201,6 +219,7 @@ namespace Pong
             else if (!Keyboard.GetState().IsKeyDown(Keys.Escape) && creditScreen)
             {
                 ball.Enabled = false;
+                obstacle.Enabled = false;
                 paddleComputer.Enabled = false;
                 paddleHuman.Enabled = false;
             }
@@ -228,110 +247,200 @@ namespace Pong
                 }
                 else
                 {
-
-                    // Wait until a second has passed before animating ball 
-                    delayTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (delayTimer > 1)
-                    {
-                        ball.Enabled = true;
-                        paddleHuman.Enabled = true;
-                        paddleComputer.Enabled = true;
-                    }
-                    int maxX = GraphicsDevice.Viewport.Width - (int)ball.SizeX;
-                    int maxY = GraphicsDevice.Viewport.Height - (int)ball.SizeY;
-
-                    // Check for bounce. Make sure to place ball back inside the screen
-                    // or it could remain outside the screen on the next iteration and cause
-                    // a back-and-forth bouncing logic error.
-                    if (ball.PositionY > maxY)
-                    {
-                        ball.VelocityY *= -1;
-                        ball.PositionY = maxY;
-                    }
-
-                    else if (ball.PositionY < 0)
-                    {
-                        ball.VelocityY *= -1;
-                        ball.PositionY = 0;
-                    }
-                    else if (ball.PositionX > maxX)
-                    {
-                        // Game over - reset ball
-                        playerPointSoundEffect.Play();
-                        playerScore += 1;
-                        ball.Reset();
-
-                        // Reset timer and stop ball's Update() from executing
-                        delayTimer = 0;
-                        ball.Enabled = false;
-                    }
-
-                    else if (ball.PositionX < 0)
-                    {
-                        // Game over - reset ball
-                        computerPointSoundEffect.Play();
-                        computerScore += 1;
-                        ball.Reset();
-
-                        // Reset timer and stop ball's Update() from executing
-                        delayTimer = 0;
-                        ball.Enabled = false;
-                    }
-
-                    // Collision?  Check rectangle intersection between ball and hand
-
-                    if (ball.IsColliding)
-                    {
-                        if (!((ball.Boundary.Intersects(paddleHuman.Boundary) && ball.VelocityX < 0)||(ball.Boundary.Intersects(paddleComputer.Boundary) && ball.VelocityX > 0)))
-                        {
-                            ball.IsColliding = false;
-                        }
-                    }
-                    else
-                    {
-                        if (ball.Boundary.Intersects(paddleHuman.Boundary) && ball.VelocityX < 0)
-                        {
-                            ball.IsColliding = true;
-                            playerSoundEffect.Play();
-
-                            Vector2 A = new Vector2(ball.PositionX, ball.PositionY);
-                            Vector2 B = new Vector2(paddleHuman.PositionX, paddleHuman.PositionY);
-                            Vector2 C = A - B;
-                            C.Normalize();
-                            Vector2 D = new Vector2(ball.VelocityX, ball.VelocityY);
-                            Vector2 E = Vector2.Reflect(D, C);
-                            ball.VelocityX = E.X;
-                            ball.VelocityY = E.Y;
-
-                            ball.SpeedUp();
-                        }
-                        else if (ball.Boundary.Intersects(paddleComputer.Boundary) && ball.VelocityX > 0)
-                        {
-                            ball.IsColliding = true;
-                            computerSoundEffect.Play();
-
-                            Vector2 A = new Vector2(ball.PositionX, ball.PositionY);
-                            Vector2 B = new Vector2(paddleComputer.PositionX, paddleComputer.PositionY);
-                            Vector2 C = A - B;
-                            C.Normalize();
-                            Vector2 D = new Vector2(ball.VelocityX, ball.VelocityY);
-                            Vector2.Reflect(D, C);
-                            ball.VelocityX = -D.X;
-                            ball.VelocityY = D.Y;
-                            ball.SpeedUp();
-                        }
-                        else
-                        {
-                            ball.IsColliding = false;
-                        }
-                    }
+                    Collision(ball, gameTime);
+                    Collision(obstacle,gameTime);
                 }
             }
             //update oldKeyState
             oldKeyState = newKeyState;
             base.Update(gameTime);
         }
+        protected void Collision(Physical thing, GameTime gameTime)
+        {
+             // Wait until a second has passed before animating thing 
+            delayTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (delayTimer > 1)
+            {
+                ball.Enabled = true;
+                obstacle.Enabled = true;
+                paddleHuman.Enabled = true;
+                paddleComputer.Enabled = true;
+            }
+            int maxX = GraphicsDevice.Viewport.Width - (int)thing.SizeX;
+            int maxY = GraphicsDevice.Viewport.Height - (int)thing.SizeY;
+            
+            if (thing.PositionY > maxY)
+            {
+                thing.VelocityY *= -1;
+                thing.PositionY = maxY;
+            }
 
+            else if (thing.PositionY < 0)
+            {
+                thing.VelocityY *= -1;
+                thing.PositionY = 0;
+            }
+            else if (thing.PositionX > maxX)
+            {
+                if (thing.IsObstacle)
+                {
+                    thing.VelocityX *= -1;
+                    thing.PositionX = maxX;
+                }
+                else
+                {
+                    // Game over - reset thing
+                    playerPointSoundEffect.Play();
+                    playerScore += 1;
+                    thing.Reset();
+                    // Reset timer and stop thing's Update() from executing
+                    delayTimer = 0;
+                    thing.Enabled = false;
+                }
+                
+            }
+
+            else if (thing.PositionX < 0)
+            {
+                if (thing.IsObstacle)
+                {
+                    thing.VelocityX *= -1;
+                    thing.PositionX = 0;
+                }
+                else
+                {
+                    // Game over - reset thing
+                    computerPointSoundEffect.Play();
+                    computerScore += 1;
+                    thing.Reset();
+                    // Reset timer and stop thing's Update() from executing
+                    delayTimer = 0;
+                    thing.Enabled = false;
+                }
+
+                
+            }
+
+            if (thing.IsColliding)
+            {
+                if (!((thing != ball           && thing.Boundary.Intersects(ball.Boundary)) 
+                   || (thing != obstacle       && thing.Boundary.Intersects(obstacle.Boundary))
+                   || (thing != paddleHuman    && thing.Boundary.Intersects(paddleHuman.Boundary))
+                   || (thing != paddleComputer && thing.Boundary.Intersects(paddleComputer.Boundary))))
+                {
+                    thing.IsColliding = false;
+                }
+            }
+            else
+            {
+                if ((thing != paddleHuman && thing.Boundary.Intersects(paddleHuman.Boundary)))
+                {
+                    thing.IsColliding = true;
+                    playerSoundEffect.Play();
+
+                    Vector2 A = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    Vector2 B = new Vector2(paddleHuman.PositionCenteredX, paddleHuman.PositionCenteredY);
+                    Vector2 C = A - B;
+                    C.Normalize();
+                    Vector2 D = new Vector2(thing.VelocityX, thing.VelocityY);
+                    Vector2.Reflect(D, C);
+                    thing.VelocityX = -D.X;
+                    thing.VelocityY = D.Y;
+                    thing.SpeedUp();
+                }
+                else if (thing != paddleComputer && thing.Boundary.Intersects(paddleComputer.Boundary))
+                {
+                    thing.IsColliding = true;
+                    computerSoundEffect.Play();
+
+                    Vector2 A = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    Vector2 B = new Vector2(paddleComputer.PositionCenteredX, paddleComputer.PositionCenteredY);
+                    Vector2 C = A - B;
+                    C.Normalize();
+                    Vector2 D = new Vector2(thing.VelocityX, thing.VelocityY);
+                    Vector2.Reflect(D, C);
+                    thing.VelocityX = -D.X;
+                    thing.VelocityY = D.Y;
+                    thing.SpeedUp();
+                }
+                else if (thing != obstacle && thing.Boundary.Intersects(obstacle.Boundary))
+                {
+                    Vector2 A = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    Vector2 B = new Vector2(obstacle.PositionCenteredX, obstacle.PositionCenteredY);
+                    Vector2 C = A - B;
+                    C.Normalize();
+                    Vector2 D = new Vector2(thing.VelocityX, thing.VelocityY);
+                    Vector2.Reflect(D, C);
+
+                    A = new Vector2(obstacle.PositionCenteredX, obstacle.PositionCenteredY);
+                    B = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    C = A - B;
+                    C.Normalize();
+                    Vector2 E = new Vector2(obstacle.VelocityX, obstacle.VelocityY);
+                    
+                    Vector2.Reflect(E, C);
+
+                    float direction;
+
+                    if (Math.Sign(thing.VelocityX) == Math.Sign(D.X) 
+                     && Math.Sign(obstacle.VelocityX) == Math.Sign(E.X)
+                     && Math.Sign(D.X) == Math.Sign(E.X))
+                    {
+                        direction = D.X;
+                        D.X = E.X;
+                        E.X = direction;
+                    }
+                    if (Math.Sign(thing.VelocityY) == Math.Sign(D.Y)
+                     && Math.Sign(obstacle.VelocityY) == Math.Sign(E.Y)
+                     && Math.Sign(D.Y) == Math.Sign(E.Y))
+                    {
+                        direction = D.Y;
+                        D.Y = E.Y;
+                        E.Y = direction;
+                    }
+
+                    thing.VelocityX = E.X;
+                    thing.VelocityY = E.Y;
+
+                    obstacle.VelocityX = D.X;
+                    obstacle.VelocityY = D.Y;
+
+                    ball.IsColliding = true;
+                    obstacle.IsColliding = true;
+
+                }
+                else if (thing != ball && thing.Boundary.Intersects(ball.Boundary)) 
+                {
+                    Vector2 A = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    Vector2 B = new Vector2(ball.PositionCenteredX, ball.PositionCenteredY);
+                    Vector2 C = A - B;
+                    C.Normalize();
+                    Vector2 D = new Vector2(thing.VelocityX, thing.VelocityY);
+                    Vector2.Reflect(D, C);
+
+                    A = new Vector2(ball.PositionCenteredX, ball.PositionCenteredY);
+                    B = new Vector2(thing.PositionCenteredX, thing.PositionCenteredY);
+                    C = A - B;
+                    C.Normalize();
+                    Vector2 E = new Vector2(ball.VelocityX, ball.VelocityY);
+
+                    Vector2.Reflect(E, C);
+
+                    thing.VelocityX = E.X;
+                    thing.VelocityY = E.Y;
+
+                    ball.VelocityX = D.X;
+                    ball.VelocityY = D.Y;
+
+                    ball.IsColliding = true;
+                    obstacle.IsColliding = true;
+                }
+                else
+                {
+                    thing.IsColliding = false;
+                }
+            }
+        }
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>

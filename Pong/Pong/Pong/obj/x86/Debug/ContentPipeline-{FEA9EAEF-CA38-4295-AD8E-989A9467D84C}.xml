@@ -7,7 +7,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
       <Time>2015-02-01T14:36:39.9695864-06:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
       <Time>2015-02-05T14:05:27.4718672-06:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
       <Time>2015-02-03T13:01:28.5967642-06:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
       <Time>2015-02-05T14:05:27.4728679-06:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb</Output>
       <Time>2015-02-05T14:05:27.4708665-06:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>WmaImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb</Output>
       <Time>2015-02-05T14:05:27.4676985-06:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>WmaImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
       <Time>2015-02-05T14:05:27.4656959-06:00</Time>
     </Item>
     <Item>
@@ -70,7 +70,7 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
       <Time>2015-02-05T14:05:27.4643056-06:00</Time>
     </Item>
     <Item>
@@ -79,7 +79,7 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
       <Time>2015-02-05T14:05:27.4698642-06:00</Time>
     </Item>
     <Item>
@@ -88,7 +88,7 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
+      <Output>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
       <Time>2015-02-05T14:05:27.4686993-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -98,10 +98,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\nroberts\Documents\Visual Studio 2010\Projects\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\nroberts\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

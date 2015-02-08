@@ -26,7 +26,7 @@ namespace Pong
         private const float INCREASE_SPEED = 50;
 
         // Collision limiter
-        private bool isColliding;
+        //private bool isColliding;
 
         // Texture stuff
         Texture2D texture;
@@ -61,17 +61,7 @@ namespace Pong
         /// <summary>
         /// Is it colliding?  I DONT KNOW LETS FIND OUT
         /// </summary>
-        public bool IsColliding
-        {
-            get
-            {
-                return isColliding;
-            }
-            set
-            {
-                isColliding = value;
-            }
-        }
+       
         #endregion
 
         public Ball(Game game)
@@ -109,21 +99,7 @@ namespace Pong
             
         }
 
-        /// <summary>
-        /// Increase the ball's speed in the X and Y directions.
-        /// </summary>
-        public void SpeedUp()
-        {
-            if (VelocityY < 0)
-                VelocityY -= INCREASE_SPEED;
-            else
-                VelocityY += INCREASE_SPEED;
-
-            if (VelocityX < 0)
-                VelocityX -= INCREASE_SPEED;
-            else
-                VelocityX += INCREASE_SPEED;
-        }
+       
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -131,12 +107,16 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
+            Mass = 10;
+            
             PositionX = 360;
             PositionY = 200;
 
             SizeX = Width;
             SizeY = Height;
             SizeR = Height / 2;
+
+            isBall = true;
 
             Random rNumber = new Random();
 

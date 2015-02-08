@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+
 //used resources from http://stackoverflow.com/questions/19189322/proper-sphere-collision-resolution-with-different-sizes-and-mass-using-xna-monog
 
 namespace Pong
@@ -29,10 +30,23 @@ namespace Pong
         private Vector3 velocity;  //x = horizontal speed, y = vertical speed
         protected float mass;
 
+        protected bool isObstacle = false;
+
+        protected bool isBall = false;
+
+        protected bool isColliding = false;
+
+        // Default speed of ball
+        private const float DEFAULT_SPEED = 150;
+
+        // Increase in speed each hit
+        private const float INCREASE_SPEED = 50;
+
         #endregion
 
         #region Properties
-
+       
+        #region Size
         /// <summary>
         /// Gets or sets the object's size.
         /// </summary>
@@ -65,6 +79,9 @@ namespace Pong
             get{return Size.Z;}
             set{size.Z = value;}
         }
+        #endregion
+
+        #region Position
         /// <summary>
         /// Get or set the object's position as a Vector3.
         /// </summary>
@@ -78,7 +95,7 @@ namespace Pong
         /// </summary>
         public float PositionX
         {
-            get{return Position.X;}
+            get{return position.X;}
             set{position.X = value;}
         }
         /// <summary>
@@ -86,11 +103,11 @@ namespace Pong
         /// </summary>
         public float PositionY
         {
-            get{return Position.Y;}
+            get{return position.Y;}
             set{position.Y = value;}
         }
         /// <summary>
-        /// Get or set the object's Z position as a float.
+        /// Get or set the object's Z position as a float. Why would you want it though?
         /// </summary>
         public float PositionZ
         {
@@ -108,6 +125,69 @@ namespace Pong
                 PositionY = value.Y;
             }
         }
+        #endregion
+
+        #region PositionCentered
+        /// <summary>
+        /// Returns the object's center as a Vector3.
+        /// </summary>
+        public Vector3 PositionCentered
+        {
+            get { return new Vector3(PositionCenteredX, PositionCenteredY, PositionZ); }
+        }
+        /// <summary>
+        /// Returns the object's center as a Vector3.
+        /// </summary>
+        public float PositionCenteredX
+        {
+            get { return PositionX + (SizeX / 2); }
+            set { PositionX = value; }
+        }
+        /// <summary>
+        /// Returns the object's center as a Vector3.
+        /// </summary>
+        public float PositionCenteredY
+        {
+            get { return PositionY + (SizeY / 2); }
+            set { PositionY = value; }
+        }
+        #endregion
+
+        public bool IsColliding
+        {
+            get
+            {
+                return isColliding;
+            }
+            set
+            {
+                isColliding = value;
+            }
+        }
+        public bool IsBall
+        {
+            get
+            {
+                return isBall;
+            }
+            set
+            {
+                isBall = value;
+            }
+        }
+        public bool IsObstacle
+        {
+            get
+            {
+                return isObstacle;
+            }
+            set
+            {
+                isObstacle = value;
+            }
+        }
+
+        #region Velocity
         /// <summary>
         /// Get or set the object's velocity as a Vector3.
         /// </summary>
@@ -117,27 +197,27 @@ namespace Pong
             set{velocity = value;}
         }
         /// <summary>
-        /// Get or set the object's X position as a float.
+        /// Get or set the object's X velocity as a float.
         /// </summary>
         public float VelocityX
         {
-            get{return Velocity.X;}
+            get{return velocity.X;}
             set{velocity.X = value;}
         }
         /// <summary>
-        /// Get or set the object's Y Velocity as a float.
+        /// Get or set the object's Y velocity as a float.
         /// </summary>
         public float VelocityY
         {
-            get{return Velocity.Y;}
+            get{return velocity.Y;}
             set{velocity.Y = value;}
         }
         /// <summary>
-        /// Get or set the object's Z Velocity as a float.
+        /// Get or set the object's Z velocity as a float.
         /// </summary>
         public float VelocityZ
         {
-            get{return Velocity.Z;}
+            get{return velocity.Z;}
             set{velocity.Z = value;}
         }
         /// <summary>
@@ -148,6 +228,9 @@ namespace Pong
             get{return new Vector2(position.X, position.Y);}
             set{Vector2 newVelocity_v2 = new Vector2(value.X, value.Y);}
         }
+        #endregion
+
+        #region Mass
         /// <summary>
         /// Get or set the object's mass.
         /// </summary>
@@ -156,22 +239,27 @@ namespace Pong
             get{return mass;}
             set{mass = value;}
         }
+        #endregion
+
+        #region Boundary
         /// <summary>
         /// Returns a BoundingSphere centered on the object.
         /// </summary>
         public BoundingSphere Boundary
         {
-            get {return new BoundingSphere(Position, SizeR);}
+            get {return new BoundingSphere(PositionCentered, SizeR);}
         }
         /// <summary>
         /// Returns a Rectangle centered on the object.
         /// </summary>
         public Rectangle Boundary_Rect
         {
-            get{return new Rectangle((int)PositionX, (int)PositionY, (int)size.X, (int)size.Y);}
+            get{return new Rectangle((int)PositionX, (int)PositionY, (int)SizeX, (int)SizeY);}
         }
+        #endregion
 
         #endregion
+
         public Physical(Game game)
             : base(game)
         {
@@ -187,44 +275,104 @@ namespace Pong
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
+        virtual public void checkCollision(Physical opponent)
+        {
+            if (!(this == opponent) && Boundary.Intersects(opponent.Boundary))
+            {
+                resolveCollision(opponent);
+            }
+        }
+
+
+        /// <summary>
+        /// Increase the ball's speed in the X and Y directions.
+        /// </summary>
+        public void SpeedUp()
+        {
+            if (!IsObstacle)
+            {
+                if (VelocityY < 0)
+                    VelocityY -= INCREASE_SPEED;
+                else
+                    VelocityY += INCREASE_SPEED;
+
+                if (VelocityX < 0)
+                    VelocityX -= INCREASE_SPEED;
+                else
+                    VelocityX += INCREASE_SPEED;
+            }
+        }
+
+        public void Reset()
+        {
+
+            isColliding = false;
+
+            PositionY = (GraphicsDevice.Viewport.Height - SizeY) / 2;
+            PositionX = (GraphicsDevice.Viewport.Width - SizeX) / 2;
+
+            Random rNumber = new Random();
+
+            VelocityX = (float)rNumber.Next((int)(DEFAULT_SPEED / 2), (int)DEFAULT_SPEED);
+
+            VelocityY = (DEFAULT_SPEED * 2) - VelocityX;
+
+            int direction = rNumber.Next(1, 4);
+
+            if (direction % 2 == 0)
+            {
+                VelocityX *= -1;
+            }
+            if (direction < 3)
+            {
+                VelocityY *= -1;
+            }
+
+        }
+
+        ///// <summary>
+        ///// Increase the ball's speed in the X and Y directions.
+        ///// </summary>
+        //public void SpeedUp()
+        //{
+        //    if (VelocityY < 0)
+        //        VelocityY -= INCREASE_SPEED;
+        //    else
+        //        VelocityY += INCREASE_SPEED;
+
+        //    if (VelocityX < 0)
+        //        VelocityX -= INCREASE_SPEED;
+        //    else
+        //        VelocityX += INCREASE_SPEED;
+        //}
+
         public void resolveCollision(Physical opponent)
-        {   
+        {
             //find the normal of the two position vectors and calculate the plane of collision
-            Vector3 collisionNormal = position - opponent.Position;
+            Vector3 collisionNormal = PositionCentered - opponent.PositionCentered;
             collisionNormal.Normalize();
             Vector3 collisionDirection = new Vector3(-collisionNormal.Y, collisionNormal.X, 0);
 
-            //split this object's velocity along the plane of collision and the normal
-            Vector3 v1Parallel = Vector3.Dot(collisionNormal, velocity) * collisionNormal;
-            Vector3 v1Ortho = Vector3.Dot(collisionDirection, velocity) * collisionDirection;
-
-            //split the opposing object's velocity along the plane of collision and the normal
+            Vector3 v1Parallel = Vector3.Dot(collisionNormal, Velocity) * collisionNormal;
+            Vector3 v1Ortho = Vector3.Dot(collisionDirection, Velocity) * collisionDirection;
             Vector3 v2Parallel = Vector3.Dot(collisionNormal, opponent.Velocity) * collisionNormal;
             Vector3 v2Ortho = Vector3.Dot(collisionDirection, opponent.Velocity) * collisionDirection;
 
-            //float v1Length = v1Parallel.Length();
-            //float v2Length = v2Parallel.Length();
-
-            //float commonVelocity = 2 * (mass * v1Length + opponent.Mass * v2Length) / (mass + opponent.Mass);
-
-            //float v1LengthAfterCollision = commonVelocity - v1Length;
-            //float v2LengthAfterCollision = commonVelocity - v2Length;
-            //v1Parallel = v1Parallel * (v1LengthAfterCollision / v1Length);
-            //v1Parallel = v2Parallel * (v2LengthAfterCollision / v2Length);
-
-            if (Vector3.Dot(collisionNormal, velocity) > 0 || Vector3.Dot(collisionNormal, opponent.Velocity) < 0)
+            if (Vector3.Dot(collisionNormal, Velocity) > 0 || Vector3.Dot(collisionNormal, opponent.Velocity) > 0)
             {
-                float totalMass = mass + opponent.Mass;
 
-                Vector3 v1ParallelNew = (v1Parallel * (mass - opponent.Mass) + 2 * opponent.Mass * v2Parallel) / totalMass;
-                Vector3 v2ParallelNew = (v2Parallel * (opponent.Mass - mass) + 2 * mass * v1Parallel) / totalMass;
+                float v1Length = v1Parallel.Length();
+                float v2Length = v2Parallel.Length();
+                float commonVelocity = 2 * (this.Mass * v1Length + opponent.Mass * v2Length) / (this.Mass + opponent.Mass);
+                float v1LengthAfterCollision = commonVelocity - v1Length;
+                float v2LengthAfterCollision = commonVelocity - v2Length;
+                v1Parallel = v1Parallel * (v1LengthAfterCollision / v1Length);
+                v2Parallel = v2Parallel * (v2LengthAfterCollision / v2Length);
 
-                v1Parallel = v1ParallelNew;
-                v2Parallel = v2ParallelNew;
-
-                velocity = v1Parallel + v1Ortho;
+                this.Velocity = v1Parallel + v1Ortho;
                 opponent.Velocity = v2Parallel + v2Ortho;
-            } 
+            }
+
         }
     }
 }
