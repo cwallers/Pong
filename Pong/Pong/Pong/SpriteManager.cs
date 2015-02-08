@@ -12,6 +12,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Pong
 {
+    /// <summary>
+    /// Sprit Manager loads, and updates the sprite image from a specified sprite sheet
+    /// </summary>
     class SpriteManager
     {
         #region SpriteManager Properties
@@ -29,6 +32,8 @@ namespace Pong
         //default to 20 frames per second
         private float timeToUpdate = 0.05f;
 
+        //file content handles
+        protected String spriteImage = @"Images\pballss";
         #endregion
 
         #region Sprite Methods
@@ -40,7 +45,7 @@ namespace Pong
 
         public SpriteManager(Game game, int frames)
         {
-            loadContent(game.Content.Load<Texture2D>(@"Images\pballss"), frames);
+            loadContent(game.Content.Load<Texture2D>(spriteImage), frames);
             position = new Vector2(100, 100);
             isLooping = true;
             framesPerSecond = 9;

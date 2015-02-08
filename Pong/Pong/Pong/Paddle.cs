@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace Pong
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// This is a game component that implements IUpdateable through the Physical Class.
     /// </summary>
     public class Paddle : Physical
     {
@@ -33,12 +33,9 @@ namespace Pong
         //file content handles
         protected String playerImage = @"Content\Images\squirtle";
         protected String computerImage = @"Content\Images\Pikachu2";
-        #endregion
-
-        #region Properties
 
         #endregion
-
+        
         public Paddle(Game game)
             : base(game)
         {
@@ -101,23 +98,20 @@ namespace Pong
         {
             Ball ball = Game.Components[0] as Ball;
 
-            //allows for use of mouse and key shift by pressing the space bar
+            //allows for use of mouse and key shift by pressing the 'M' key during game play
             if (Keyboard.GetState().IsKeyDown(Keys.M) && !oldKBState.IsKeyDown(Keys.M))
             {
                 isMouseControl = !isMouseControl; // reverse the control keys
             }
 
-            // Move paddle, but don't allow movement off the screen
-            
-            VelocityY = DEFAULT_Y_SPEED;
-            
+            // hold the old keyBoard/Mouse state in variables to check for holding down keys and movement etc.
             KeyboardState newKeyState = Keyboard.GetState();
             mouseStatePrevious = mouseStateCurrent;
             mouseStateCurrent = Mouse.GetState();
 
-            float yBeforeMove = PositionY;
+            VelocityY = DEFAULT_Y_SPEED;
 
-            if (isMouseControl)
+            if (isMouseControl) // work with mouse movement here
             {
                 float edge = GraphicsDevice.Viewport.Height - SizeY;
 
@@ -127,7 +121,7 @@ namespace Pong
                     edge = 0;
                 }
 
-                if (Math.Abs(PositionCenteredY - mouseStateCurrent.Y) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
+                if (Math.Abs(PositionCenteredY - mouseStateCurrent.Y) < (ball.SizeY / 2) + (SizeY / 2))
                 {
                     VelocityY *= (Math.Abs(PositionCenteredY - mouseStateCurrent.Y) / ((ball.SizeY / 2) + (SizeY / 2)));
                 }
@@ -141,7 +135,7 @@ namespace Pong
                 }
 
             }
-            else
+            else // work with keyboard commands here
             {
 
                 if (newKeyState.IsKeyDown(Keys.Down) && PositionY + SizeY
@@ -158,8 +152,8 @@ namespace Pong
                     VelocityY = 0;
                 }
             }
+            oldKBState = newKeyState; // set old keyboard state before newKeyState goes out of scope
 
-            oldKBState = newKeyState;
             base.Update(gameTime);
         }
 
@@ -169,9 +163,7 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
-            base.Initialize();
-
-            // Make sure base.Initialize() is called before this or handSprite will be null
+            base.Initialize(); // must be called first to avoid a null pointer
 
             Mass = 20;
             
@@ -205,9 +197,7 @@ namespace Pong
         /// </summary>
         public override void Initialize()
         {
-            base.Initialize();
-
-            // Make sure base.Initialize() is called before this or handSprite will be null
+            base.Initialize(); // must be called first to aboid a null pointer
 
             Mass = 20;
 
@@ -215,47 +205,45 @@ namespace Pong
             SizeY = (float)paddleSprite.Height;
             SizeR = (float)(paddleSprite.Height / 2);
 
-            // Make sure base.Initialize() is called before this or handSprite will be null
             PositionX = GraphicsDevice.Viewport.Width - SizeX -  2;
             PositionY = (GraphicsDevice.Viewport.Height - SizeY) / 2;
 
             VelocityX = 0;
-            VelocityY = 0;
-
-            
+            VelocityY = 0;            
         }
 
         public override void Update(GameTime gameTime)
         {
             Ball ball = Game.Components[0] as Ball;
 
+            KeyboardState newKeyState = Keyboard.GetState();
+
             // Scale the movement based on time
             VelocityY = DEFAULT_Y_SPEED;
 
-            // Move paddle, but don't allow movement off the screen
-
-            KeyboardState newKeyState = Keyboard.GetState();
-
             float edge = GraphicsDevice.Viewport.Height - SizeY;
 
-                if (PositionCenteredY > ball.PositionCenteredY)
-                {
-                    VelocityY *= -1;
-                    edge = 0;
-                }
+            // The AI will track the ball as it moves across the screen without going off of the screen
+            
+            if (PositionCenteredY > ball.PositionCenteredY)
+            {
+                VelocityY *= -1;
+                edge = 0;
+            }
 
-                if (Math.Abs(PositionCenteredY - ball.PositionCenteredY) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
-                {
-                    VelocityY *= (Math.Abs(PositionCenteredY - ball.PositionCenteredY) / ((ball.SizeY / 2) + (SizeY / 2)));
-                }
+            if (Math.Abs(PositionCenteredY - ball.PositionCenteredY) < ((ball.SizeY / 2) + (SizeY / 2)))     //paren - thesis!!
+            {
+                VelocityY *= (Math.Abs(PositionCenteredY - ball.PositionCenteredY) / ((ball.SizeY / 2) + (SizeY / 2)));
+            }
 
-                PositionY += VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            PositionY += VelocityY * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (PositionY < 0 || PositionY + SizeY > GraphicsDevice.Viewport.Height)
-                {
-                    PositionY = edge;
-                    VelocityY = 0;
-                }
+            if (PositionY < 0 || PositionY + SizeY > GraphicsDevice.Viewport.Height)
+            {
+                PositionY = edge;
+                VelocityY = 0;
+            }
+
             base.Update(gameTime);
         }
     }

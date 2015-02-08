@@ -2,13 +2,22 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>myFont.spritefont</Source>
+      <Name>myFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Time>2015-02-08T15:25:32.5944165-06:00</Time>
+    </Item>
+    <Item>
       <Source>Images\pballss.png</Source>
       <Name>Images\pballss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
-      <Time>2015-02-03T23:40:04.6346136-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\pballss.xnb</Output>
+      <Time>2015-02-08T13:13:03.3817475-06:00</Time>
     </Item>
     <Item>
       <Source>Images\Pikachu2.png</Source>
@@ -16,17 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
-      <Time>2015-02-03T15:31:16.7571913-06:00</Time>
-    </Item>
-    <Item>
-      <Source>myFont.spritefont</Source>
-      <Name>myFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\myFont.xnb</Output>
-      <Time>2015-02-03T15:31:16.768192-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\Pikachu2.xnb</Output>
+      <Time>2015-02-08T13:13:03.3787473-06:00</Time>
     </Item>
     <Item>
       <Source>Images\squirtle.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
-      <Time>2015-02-03T23:30:14.5118605-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\squirtle.xnb</Output>
+      <Time>2015-02-08T13:13:03.3847477-06:00</Time>
     </Item>
     <Item>
       <Source>Images\bg.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb</Output>
-      <Time>2015-02-03T23:51:09.3796348-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\bg.xnb</Output>
+      <Time>2015-02-08T13:13:03.3797474-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\Squirtle.wma</Source>
@@ -52,8 +52,8 @@
       <Importer>WmaImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb</Output>
-      <Time>2015-02-04T00:20:02.0227364-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Squirtle.xnb</Output>
+      <Time>2015-02-08T13:13:03.3457454-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\Pikachu.wma</Source>
@@ -61,8 +61,8 @@
       <Importer>WmaImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
-      <Time>2015-02-04T00:20:00.564653-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Pikachu.xnb</Output>
+      <Time>2015-02-08T13:13:03.3407451-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\And there goes the battle.mp3</Source>
@@ -70,8 +70,8 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
-      <Time>2015-02-04T16:19:27.165957-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\And there goes the battle.xnb</Output>
+      <Time>2015-02-08T13:13:03.3367449-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\Woops that missed.mp3</Source>
@@ -79,8 +79,8 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
-      <Time>2015-02-04T14:42:28.5610217-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\Woops that missed.xnb</Output>
+      <Time>2015-02-08T13:13:03.3507457-06:00</Time>
     </Item>
     <Item>
       <Source>Audio\WOW.mp3</Source>
@@ -88,8 +88,26 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
-      <Time>2015-02-04T14:43:11.9835053-06:00</Time>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\WOW.xnb</Output>
+      <Time>2015-02-08T13:13:03.3477456-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\PokemonPause.png</Source>
+      <Name>Images\PokemonPause</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\PokemonPause.xnb</Output>
+      <Time>2015-02-08T14:40:09.8986872-06:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\obstacle.png</Source>
+      <Name>Images\obstacle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\Images\obstacle.xnb</Output>
+      <Time>2015-02-08T15:01:47.6529145-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -97,10 +115,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\PongContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Catherine\Documents\GitHub\Pong\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
