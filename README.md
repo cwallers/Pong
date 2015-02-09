@@ -10,6 +10,7 @@ Summary:  XNA Pong game with a Pokemon theme \n
  - F = full screen
  - N = new game, only avalible when someone has won
  - M = change the control between a mouse and the arrow keys
+ - R = manually reset the ball
  - Backspace = exit the game
 
 Bugs: 
