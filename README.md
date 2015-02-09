@@ -15,7 +15,7 @@ Summary:  XNA Pong game with a Pokemon theme \n
 Bugs: 
 - Every once in a blue moon, when the ball is moving too fast it does not detect collision because the update method is not called fast enough... but that's unavoidable and it is practically impossible to play at that level for long
 
-Catherine Wallers: (%)
+Catherine Wallers: (55%)
 - FontSprite (aka, where it showed up, when it showes up and it's settings)
 - Set the score system up
 - Sprite Sheet (chose the image, edited it to work for what we needed, and implemented it)
@@ -27,8 +27,14 @@ Catherine Wallers: (%)
 - Added the new spritesheet to the obstacle class
 - Cleaned up the code and fixed some of the image/text within the game
 
-Nathan Roberts:(%)
-- 
+Nathan Roberts:(45%)
+- Added Physical base class to standardize position and velocity variables
+- Made computer paddle AI
+- Smoothened player paddle mouse tracking and computer movement
+- Added BoundingSphere collision detection to paddles
+- Added reflection to collision detection method
+- Randomized ball reset velocity
+- Added manual ball reset
 
 
 
